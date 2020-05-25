@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Taco Cloud</title>
+</head>
+
+<body>
+<h1>Provide holiday place</h1>
+<img th:src="@{/img/logo1.png}"/>
+
+<!-- tag::formTag[] -->
+<form method="POST" th:object="${design}" th:action="@{/place/new-place}" id="designForm">
+
+    <div>
+
+        <h3>Real or Dream</h3>
+        <input type="checkbox" th:text="checkIfDreamed" th:field="*{dreamed}"/>
+
+
+        <h3>Country:</h3>
+        <!--        <input type="text" th:field="*{country}"/>-->
+        <select class="custom-select" th:field="*{country}">
+            <option th:each="country : ${countyList}" th:value="${country.getId()}"
+                    th:text="${country.getCountryName()}">
+            </option>
+        </select>
+        <!-- end::all[] -->
+        <span th:text="${#fields.hasErrors('country')}">XXX</span>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('country')}"
+              th:errors="*{country}">Name Error</span>
+        <!-- tag::all[] -->
+        <br/>
+
+        <h3>City:</h3>
+
+        <div>
+
+                <input type="text" class="form-control" placeholder="City" aria-label="City"
+                       aria-describedby="basic-addon1" th:field="*{city}">
+                <span th:text="${#fields.hasErrors('city')}">XXX</span>
+                <span class="validationError"
+                      th:if="${#fields.hasErrors('city')}"
+                      th:errors="*{city}">Name Error</span>
+
+        </div>
+        <br/>
+
+        <h3>Street:</h3>
+
+
+            <div>
+
+                <input type="text" class="form-control" placeholder="Street" aria-label="Street"
+                       aria-describedby="basic-addon2" th:field="*{street}">
+                <span th:text="${#fields.hasErrors('street')}">XXX</span>
+                <span class="validationError"
+                      th:if="${#fields.hasErrors('street')}"
+                      th:errors="*{street}">Name Error</span>
+            </div>
+
+        <!-- tag::all[] -->
+        <br/>
+
+        <h3>ZIp-Code:</h3>
+        <div>
+            <input type="text" class="form-control" placeholder="Zip" aria-label="Zip" aria-describedby="basic-addon3"
+                   th:field="*{zip}">
+            <span th:text="${#fields.hasErrors('zip')}">XXX</span>
+            <span class="validationError"
+                  th:if="${#fields.hasErrors('zip')}"
+                  th:errors="*{zip}">Name Error</span>
+        </div>
+        <br/>
+    </div>
+    </div>
+    <button>Submit your place</button>
+
+</form>
+</body>
+</html>

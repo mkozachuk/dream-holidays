@@ -10,7 +10,7 @@ public class Place {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private Long place_id;
 
     @ManyToOne(targetEntity = Country.class)
     @JoinColumn(name = "country_id")
