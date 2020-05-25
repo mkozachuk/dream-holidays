@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Dream Holidays</title>
+    <img th:src="@{/img/logo1.png}"/>
+
+</head>
+<form method="POST" th:action="@{/login}" id="loginForm">
+    <div th:if="${error}">
+        <h1> Unable to login. Check your username and password.</h1>
+    </div>
+    <!-- end::thAction[] -->
+    <!--    <label for="username">Username: </label>-->
+    <!--    <input type="text" name="username" id="username" /><br/>-->
+
+    <div>
+        <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+               aria-describedby="basic-addon1" name="username" id="username">
+    </div>
+
+
+    <div>
+        <input type="password" class="form-control" placeholder="Password" aria-label="Password"
+               aria-describedby="basic-addon2" name="password" id="password">
+    </div>
+    <div>
+        <input type="submit" value="Login"/>
+        <button type="button" value="Sing Up">
+            <a th:href="@{/register}">Sing Up</a>
+        </button>
+    </div>
+
+    </div>
+</form>
+</body>
+</html>
