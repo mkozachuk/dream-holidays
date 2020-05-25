@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Dream Holidays</title>
+    <img th:src="@{/img/logo1.png}"/>
+
+</head>
+<form method="POST" th:action="@{/register}" id="registrationForm">
+
+    <label for="username">Username: </label>
+    <input type="text" name="username"/><br/>
+
+    <label for="password">Password: </label>
+    <input type="password" name="password"/><br/>
+
+    <label for="confirm">Confirm password: </label>
+    <input type="password" name="confirm"/><br/>
+
+    <label for="email">email: </label>
+    <input type="text" name="email"/><br/>
+
+    <input type="submit" value="Register"/>
+</form>
+</body>
+</html>
