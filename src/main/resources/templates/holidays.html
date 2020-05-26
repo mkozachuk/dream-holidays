@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Taco Cloud</title>
+</head>
+
+<body>
+<H1>All Holidays</H1>
+
+<!--/*@thymesVar id="holiday" type="Holiday"*/-->
+<form method="GET" th:action="@{/holidays/my-holidays}" th:object="${user}">
+    <div class="holidays">
+        <div>
+            <select>
+                <option th:each="i : ${user.usersHolidays}" th:value="${i.getPlace()}" th:text="${i.place}">
+                    <p th:object="${i}" th:text="${i.transport}"></p>
+                </option>
+            </select>
+
+
+            <h3>Weather</h3>
+
+            <div>
+                <h3>baggage</h3>
+
+            </div>
+            <div>
+                <h3>actual photo</h3>
+            </div>
+        </div>
+
+
+    </div>
+</form>
+
+</body>
+</html>

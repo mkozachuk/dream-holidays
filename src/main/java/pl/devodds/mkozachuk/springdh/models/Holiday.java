@@ -29,7 +29,7 @@ public class Holiday {
     @Column(name = "id")
     private Long holiday_id;
 
-    @NotBlank(message = "Name is required")
+//    @NotBlank(message = "Name is required")
     @Size(min = 5, message = "Name must be at least 5 characters long")
     @Column(name = "name")
     private String name;
@@ -38,12 +38,12 @@ public class Holiday {
     @JoinColumn
     private User user;
 
-    @NotBlank(message = "Date is required")
+//    @NotBlank(message = "Date is required")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "start_date")
     private Date startDate;
 
-    @NotBlank(message = "Place is required")
+//    @NotBlank(message = "Place is required")
     @ManyToOne()
     @JoinColumn(name = "place_id")
     private Place place;
@@ -52,13 +52,20 @@ public class Holiday {
 //    @Transient
 //    private Weather weather;
 
+    //dreamed only
     @Column(name = "price")
     private BigDecimal price;
+
+    private BigDecimal startCapital;
+    private BigDecimal monthlySave;
+
 
 
     @ManyToOne()
     @JoinColumn()
     private Transport transport;
+
+
 
 //    @Transient
 //    List<Things> baggage = new ArrayList<>();

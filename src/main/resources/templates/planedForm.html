@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Taco Cloud</title>
+
+</head>
+
+<body>
+<form method="POST" th:action="@{/logout}" id="logoutForm">
+    <input class="btn btn-secondary btn-pill" type="submit" value="Logout"/>
+</form>
+
+<form method="POST" th:action="@{/holidays/planed}" th:object="${holiday}"
+      id="holidayForm">
+    <h1>Additional info about your holidays</h1>
+
+
+    <img th:src="@{/img/logo.jpg}"/>
+    <a th:href="@{/design}" id="another">Change place</a><br/>
+
+
+    <ul>
+        <li th:each="place : ${holiday.place}"><span th:text="${place.country}">taco name</span></li>
+    </ul>
+
+    <div th:if="${#fields.hasErrors()}">
+        <span class="validationError">
+        Please correct the problems below and resubmit.
+        </span>
+    </div>
+
+    <h3>My add info</h3>
+
+    <div >
+
+            <input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1" th:field="*{name}">
+            <span class="validationError"
+                  th:if="${#fields.hasErrors('name')}"
+                  th:errors="*{name}">Name Error</span>
+
+    </div>
+    <!-- tag::allButValidation[] -->
+    <br/>
+
+    <label for="date">Date: </label>
+
+    <input type="date" th:field="*{startDate}">
+    <span class="validationError"
+          th:if="${#fields.hasErrors('startDate')}"
+          th:errors="*{startDate}">Street Error</span>
+
+    <br/>
+
+    <label for="place">Place: </label>
+    <span th:text="${holiday.place}"></span>
+
+    <!--    <input type="text" th:field="*{place}"/>-->
+    <!--    &lt;!&ndash; end::allButValidation[] &ndash;&gt;-->
+    <!--    <span class="validationError"-->
+    <!--          th:if="${#fields.hasErrors('place')}"-->
+    <!--          th:errors="*{place}">City Error</span>-->
+    <!-- tag::allButValidation[] -->
+    <br/>
+
+
+    <label for="transport">transport </label>
+
+    <select class="custom-select" type="text" th:field="${holiday.transport}">
+        <option value="1">By plane</option>
+        <option value="3">By car</option>
+        <option value="2">Railway</option>
+        <option value="4">Ship</option>
+    </select>
+
+    <br/>
+
+
+    <input type="submit" value="Submit order"/>
+
+</form>
+
+</body>
+</html>

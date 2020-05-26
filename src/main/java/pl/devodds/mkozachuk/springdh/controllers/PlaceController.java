@@ -10,6 +10,7 @@ import pl.devodds.mkozachuk.springdh.models.Country;
 import pl.devodds.mkozachuk.springdh.models.Holiday;
 import pl.devodds.mkozachuk.springdh.models.Place;
 import pl.devodds.mkozachuk.springdh.models.User;
+import pl.devodds.mkozachuk.springdh.repositories.HolidayRepository;
 import pl.devodds.mkozachuk.springdh.repositories.PlaceRepository;
 import pl.devodds.mkozachuk.springdh.repositories.UserRepository;
 
@@ -27,6 +28,7 @@ public class PlaceController {
     private CountryController countryController;
     private PlaceRepository placeRepository;
     private UserRepository userRepository;
+
 
     public PlaceController(CountryController countryController, PlaceRepository placeRepository, UserRepository userRepository){
         this.countryController = countryController;
@@ -62,9 +64,10 @@ public class PlaceController {
         if (errors.hasErrors()) {
             return "design";
         }
-        log.info("Processing design: " + design);
+
         design.setUser(user);
         Place saved = placeRepository.save(design);
+        log.info("Place has been saved: " + design);
         holiday.addDesign(saved);
 
         if(design.isDreamed()){
@@ -73,5 +76,7 @@ public class PlaceController {
             return "redirect:/holidays/planed";
         }
     }
+
+
 
 }
