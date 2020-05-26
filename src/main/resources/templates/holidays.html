@@ -13,11 +13,44 @@
 <form method="GET" th:action="@{/holidays/my-holidays}" th:object="${user}">
     <div class="holidays">
         <div>
-            <select>
-                <option th:each="i : ${user.usersHolidays}" th:value="${i.getPlace()}" th:text="${i.place}">
-                    <p th:object="${i}" th:text="${i.transport}"></p>
+            <select id="example" onChange="CityChange()">
+                <option th:each="i : ${user.usersHolidays}" th:value="${i.name}" th:text="${i.name} + '' + ${i.place.country}">
+
                 </option>
             </select>
+
+            <div th:each="i : ${user.usersHolidays}" th:id="${i.name}" style="display: none">
+                <label>Place: </label>
+                <ul>
+                    <li th:text="${i.place.country.getCountryName()}"></li>
+                    <li th:text="${i.place.city}"></li>
+                    <li th:text="${i.place.street}"></li>
+                </ul>
+
+                <label>Transport: </label>
+                <ul>
+                    <li th:text="${i.transport.type}"></li>
+                </ul>
+
+                <div th:if="${i.place.dreamed}">
+                <label>Start Capital: </label>
+                <ul>
+                    <li th:text="${i.startCapital}"></li>
+                </ul>
+                </div>
+
+
+
+            </div>
+
+
+            <div id="currentholiday"></div>
+            <script>
+                function CityChange()
+                {
+                    document.getElementById('currentholiday').innerHTML = document.getElementById(document.getElementById('example').value).innerHTML
+                }
+            </script>
 
 
             <h3>Weather</h3>
@@ -29,6 +62,10 @@
             <div>
                 <h3>actual photo</h3>
             </div>
+
+
+
+
         </div>
 
 
