@@ -49,8 +49,8 @@ public class Holiday {
     private Place place;
 
 
-//    @Transient
-//    private Weather weather;
+    @Transient
+    private Weather weather;
 
     //dreamed only
     @Column(name = "price")
@@ -58,6 +58,9 @@ public class Holiday {
 
     private BigDecimal startCapital;
     private BigDecimal monthlySave;
+
+    @Transient
+    private List<String> imgs;
 
 
 
