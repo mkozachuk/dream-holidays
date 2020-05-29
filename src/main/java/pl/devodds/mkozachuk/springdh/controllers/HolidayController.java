@@ -17,6 +17,7 @@ import pl.devodds.mkozachuk.springdh.repositories.HolidayRepository;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -52,6 +53,7 @@ public class HolidayController {
         log.info("Holiday submitted: " + holiday);
         holiday.setUser(user);
 //        holiday.setTransport(transportController.getByType(new Transport(holiday.getTransportId()).getType()));
+        holiday.setStartDate(new Date());
         holidayRepository.save(holiday);
         sessionStatus.setComplete();
 
@@ -74,6 +76,7 @@ public class HolidayController {
         log.info("Holiday submitted: " + holiday);
         holiday.setUser(user);
         holiday.setTransport(transportController.getByType(new Transport(holiday.getTransport().getType()).getType()));
+        holiday.setStartDate(new Date());
         holidayRepository.save(holiday);
         sessionStatus.setComplete();
 
@@ -86,7 +89,7 @@ public class HolidayController {
 
         user.setUsersHolidays(getUsersHolidays(user));
 
-
+        user.setCurrentDate(new Date());
 
         for(Holiday holiday : user.getUsersHolidays()){
             try {
@@ -96,6 +99,7 @@ public class HolidayController {
                 log.error("APIE");
             }
             holiday.setImgs(new ArrayList<>());
+            holiday.setInterestingPlacesUrls(new ArrayList<>());
 
             try{
                 List<Result> res = holidayImageController.search(holiday.getPlace().getCity() + " beautiful photo");
@@ -103,6 +107,16 @@ public class HolidayController {
 //                    System.out.println(result.getImage().getContextLink());
                     System.out.println(result.getPagemap().get("cse_image"));
                     holiday.getImgs().add(result.getPagemap().get("cse_image").toString().replace("[{src=","").replace("}]", ""));
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+            try{
+                List<Result> trip = holidayImageController.search("site:tripadvisor.com \"" + holiday.getPlace().getCity() +" attractions\"");
+                for(Result res : trip){
+                    holiday.getInterestingPlacesUrls().add(res.getLink());
+                    System.out.println("TRIP: " + res.getLink());
                 }
             }catch (Exception e){
                 e.printStackTrace();

@@ -43,6 +43,10 @@ public class Holiday {
     @Column(name = "start_date")
     private Date startDate;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(name = "created_date")
+    private Date createdAt;
+
 //    @NotBlank(message = "Place is required")
     @ManyToOne()
     @JoinColumn(name = "place_id")
@@ -61,6 +65,9 @@ public class Holiday {
 
     @Transient
     private List<String> imgs;
+
+    @Transient
+    private List<String> interestingPlacesUrls;
 
 
 
