@@ -3,10 +3,16 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Taco Cloud</title>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link th:href="@{/shards.css}" rel="stylesheet" />
 </head>
 
 <body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script type="application/json" src="/js/shards.js"></script>
+<script type="text/javascript" th:src="@{/js/shards.js}"></script>
 <form method="POST" th:action="@{/logout}" id="logoutForm">
     <input class="btn btn-secondary btn-pill" type="submit" value="Logout"/>
 </form>
@@ -16,7 +22,7 @@
     <h1>Additional info about your holidays</h1>
 
 
-    <img th:src="@{/img/logo.jpg}"/>
+    <img th:src="@{/img/logo1.png}"/>
     <a th:href="@{/design}" id="another">Change place</a><br/>
 
 
@@ -32,25 +38,56 @@
 
     <h3>My add info</h3>
 
-    <div >
+    <!--    <div >-->
 
-            <input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1" th:field="*{name}">
+    <!--            <input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1" th:field="*{name}">-->
+    <!--            <span class="validationError"-->
+    <!--                  th:if="${#fields.hasErrors('name')}"-->
+    <!--                  th:errors="*{name}">Name Error</span>-->
+
+    <!--    </div>-->
+
+
+    <div class="form-group col-md-6">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="Name"><i class="fa fa-user"></i></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="Name"
+                   th:field="*{name}">
             <span class="validationError"
                   th:if="${#fields.hasErrors('name')}"
                   th:errors="*{name}">Name Error</span>
-
+        </div>
     </div>
+
     <!-- tag::allButValidation[] -->
     <br/>
 
     <label for="date">Date: </label>
 
-    <input type="date" th:field="*{startDate}">
+
+    <input type="date" class="form-control" id="datepicker-example" th:field="*{startDate}">
     <span class="validationError"
           th:if="${#fields.hasErrors('startDate')}"
           th:errors="*{startDate}">Street Error</span>
 
-    <br/>
+    <!-- JavaScript -->
+    <script th:inline="javascript">
+        $('#datepicker-example').datepicker({
+            calendarWeeks: true,
+            autoclose: true,
+            todayHighlight: true
+        });
+    </script>
+
+
+    <!--    <input type="date" th:field="*{startDate}">-->
+    <!--    <span class="validationError"-->
+    <!--          th:if="${#fields.hasErrors('startDate')}"-->
+    <!--          th:errors="*{startDate}">Street Error</span>-->
+
+    <!--    <br/>-->
 
     <label for="place">Place: </label>
     <span th:text="${holiday.place}"></span>
@@ -75,10 +112,9 @@
 
     <br/>
 
+    <button type="submit" class="btn btn-primary btn-pill">Create Holiday</button>
 
-    <input type="submit" value="Submit order"/>
 
 </form>
-
 </body>
 </html>

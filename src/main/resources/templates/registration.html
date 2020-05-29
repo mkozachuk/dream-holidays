@@ -6,22 +6,67 @@
     <title>Dream Holidays</title>
     <img th:src="@{/img/logo1.png}"/>
 
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" th:href="@{/style.css}"/>
+    <link rel="stylesheet" th:href="@{/shards.css}"/>
+    <link rel="stylesheet" th:href="@{/shards-extras.css}"/>
+
 </head>
 <form method="POST" th:action="@{/register}" id="registrationForm">
 
-    <label for="username">Username: </label>
-    <input type="text" name="username"/><br/>
+    <div class="form-group col-md-6">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="username"><i class="fa fa-user"></i></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="username" name="username">
+        </div>
+    </div>
 
-    <label for="password">Password: </label>
-    <input type="password" name="password"/><br/>
+<!--    <label for="username">Username: </label>-->
+<!--    <input type="text" name="username"/><br/>-->
 
-    <label for="confirm">Confirm password: </label>
-    <input type="password" name="confirm"/><br/>
+    <div class="form-group col-md-6">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="password"><i class="fa fa-user"></i></span>
+            </div>
+            <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password" name="password">
+        </div>
+    </div>
 
-    <label for="email">email: </label>
-    <input type="text" name="email"/><br/>
+<!--    <label for="password">Password: </label>-->
+<!--    <input type="password" name="password"/><br/>-->
 
-    <input type="submit" value="Register"/>
+    <div class="form-group col-md-6">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="conf-password"><i class="fa fa-user"></i></span>
+            </div>
+            <input type="password" class="form-control" placeholder="ConfirmPassword" aria-label="ConfirmPassword" aria-describedby="conf-password" name="confirm">
+        </div>
+    </div>
+
+<!--    <label for="confirm">Confirm password: </label>-->
+<!--    <input type="password" name="confirm"/><br/>-->
+
+    <div class="form-group col-md-6">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="email"><i class="fa fa-user"></i></span>
+            </div>
+            <input type="text" class="form-control" placeholder="email" aria-label="email" aria-describedby="email" name="email">
+        </div>
+    </div>
+
+<!--    <label for="email">email: </label>-->
+<!--    <input type="text" name="email"/><br/>-->
+    <button type="submit" class="btn btn-primary btn-pill" value="Register">Sing Up</button>
+
+<!--    <input type="submit" value="Register"/>-->
 </form>
 </body>
 </html>

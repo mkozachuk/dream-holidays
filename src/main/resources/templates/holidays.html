@@ -4,16 +4,24 @@
 
 <head>
     <title>Taco Cloud</title>
+    <img th:src="@{/img/logo1.png}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link th:href="@{/shards.css}" rel="stylesheet" />
 </head>
-
 <body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script type="application/json" src="/js/shards.js"></script>
+<script type="text/javascript" th:src="@{/js/shards.js}"></script>
 <H1>All Holidays</H1>
 
 <!--/*@thymesVar id="holiday" type="Holiday"*/-->
 <form method="GET" th:action="@{/holidays/my-holidays}" th:object="${user}">
     <div class="holidays">
         <div>
-            <select id="example" onChange="CityChange()">
+            <select class="custom-select" id="example" onChange="CityChange()">
+                <option disabled selected >Choose your holiday</option>
                 <option th:each="i : ${user.usersHolidays}" th:value="${i.name}" th:text="${i.name} + '' + ${i.place.country}">
 
                 </option>
@@ -32,11 +40,42 @@
                     <li th:text="${i.transport.type}"></li>
                 </ul>
 
+                <div th:if="${!i.place.dreamed}">
+                <label>Date status: </label>
+                <ul>
+                    <li th:text="${i.startDate}"></li>
+                    <li th:text="(${i.startDate.getTime()} - ${user.currentDate.getTime()}) / (24 * 60 * 60 * 1000)"></li>
+                    <li th:text="100 -
+                    (
+                    (${i.startDate.getTime()} - ${user.currentDate.getTime()})
+                    /
+                    (24 * 60 * 60 * 1000) * 100)
+                    / ((${i.startDate.getTime()} - ${i.createdAt.getTime()})/
+                    (24 * 60 * 60 * 1000))"></li>
+                </ul>
+                </div>
+
+                <label>Weather: </label>
+                <ul>
+                    <li th:text="${i.weather.currentWeather}"></li>
+                    <li th:text="${i.weather.forecast}"></li>
+                </ul>
+
+                <h3>Interesting places</h3>
+                <div th:each="string : ${i.interestingPlacesUrls}">
+                    <a th:href="${string}" th:text="${string}"></a>
+                </div>
+
                 <div th:if="${i.place.dreamed}">
                 <label>Start Capital: </label>
                 <ul>
                     <li th:text="${i.startCapital}"></li>
                 </ul>
+                </div>
+
+                <div th:each="img : ${i.imgs}">
+                    <h3>actual photo</h3>
+                    <img th:src="${img}">
                 </div>
 
 
@@ -54,6 +93,7 @@
 
 
             <h3>Weather</h3>
+
 
             <div>
                 <h3>baggage</h3>

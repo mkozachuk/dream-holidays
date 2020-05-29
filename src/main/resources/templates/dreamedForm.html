@@ -3,9 +3,16 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Taco Cloud</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link th:href="@{/shards.css}" rel="stylesheet" />
 </head>
 
 <body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script type="application/json" src="/js/shards.js"></script>
+<script type="text/javascript" th:src="@{/js/shards.js}"></script>
 <form method="POST" th:action="@{/logout}" id="logoutForm">
     <input class="btn btn-secondary btn-pill" type="submit" value="Logout"/>
 </form>
@@ -29,25 +36,37 @@
 
     <h3>My add info</h3>
 
-    <div class="form-group col-md-6">
+<!--    <div class="form-group col-md-6">-->
 
-            <input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1" th:field="*{name}">
+<!--            <input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1" th:field="*{name}">-->
+<!--            <span class="validationError"-->
+<!--                  th:if="${#fields.hasErrors('name')}"-->
+<!--                  th:errors="*{name}">Name Error</span>-->
+
+<!--    </div>-->
+    <div class="form-group col-md-6">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="Name"><i class="fa fa-user"></i></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="Name"
+                   th:field="*{name}">
             <span class="validationError"
                   th:if="${#fields.hasErrors('name')}"
                   th:errors="*{name}">Name Error</span>
-
+        </div>
     </div>
     <!-- tag::allButValidation[] -->
     <br/>
 
-    <label for="date">Date: </label>
+<!--    <label for="date">Date: </label>-->
 
-    <input type="date" class="form-control" id="datepicker-example" th:field="*{startDate}">
-    <span class="validationError"
-          th:if="${#fields.hasErrors('startDate')}"
-          th:errors="*{startDate}">Street Error</span>
+<!--    <input type="date" class="form-control" id="datepicker-example" th:field="*{startDate}">-->
+<!--    <span class="validationError"-->
+<!--          th:if="${#fields.hasErrors('startDate')}"-->
+<!--          th:errors="*{startDate}">Street Error</span>-->
 
-    <br/>
+<!--    <br/>-->
 
     <label for="place">Place: </label>
     <span th:text="${holiday.place}"></span>
@@ -57,37 +76,76 @@
 
     <label for="price">Price: </label>
 
-    <div>
+<!--    <div>-->
 
-            <input type="text" class="form-control" placeholder="Price" aria-label="Price" aria-describedby="basic-addon2" th:field="*{price}">
+<!--            <input type="text" class="form-control" placeholder="Price" aria-label="Price" aria-describedby="basic-addon2" th:field="*{price}">-->
+<!--            <span class="validationError"-->
+<!--                  th:if="${#fields.hasErrors('price')}"-->
+<!--                  th:errors="*{price}">Zip Error</span>-->
+<!--    </div>-->
+<!--    <br/>-->
+
+    <div class="form-group col-md-6">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="Price"><i class="fa fa-user"></i></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Price" aria-label="Price" aria-describedby="Price"
+                   th:field="*{price}">
             <span class="validationError"
                   th:if="${#fields.hasErrors('price')}"
-                  th:errors="*{price}">Zip Error</span>
+                  th:errors="*{price}">price Error</span>
+        </div>
     </div>
-    <br/>
 
 
     <label for="startCapital">Start Capital: </label>
 
-    <div>
+<!--    <div>-->
 
-        <input type="text" class="form-control" placeholder="startCapital" aria-label="startCapital" aria-describedby="basic-addon2" th:field="*{startCapital}">
-        <span class="validationError"
-              th:if="${#fields.hasErrors('startCapital')}"
-              th:errors="*{startCapital}">Start capital error</span>
+<!--        <input type="text" class="form-control" placeholder="startCapital" aria-label="startCapital" aria-describedby="basic-addon2" th:field="*{startCapital}">-->
+<!--        <span class="validationError"-->
+<!--              th:if="${#fields.hasErrors('startCapital')}"-->
+<!--              th:errors="*{startCapital}">Start capital error</span>-->
+<!--    </div>-->
+<!--    <br/>-->
+
+    <div class="form-group col-md-6">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="StartCapital"><i class="fa fa-user"></i></span>
+            </div>
+            <input type="text" class="form-control" placeholder="StartCapital" aria-label="StartCapital" aria-describedby="StartCapital"
+                   th:field="*{startCapital}">
+            <span class="validationError"
+                  th:if="${#fields.hasErrors('startCapital')}"
+                  th:errors="*{startCapital}">StartCapital Error</span>
+        </div>
     </div>
-    <br/>
 
     <label for="monthlySave">Monthly Save: </label>
 
-    <div>
+<!--    <div>-->
 
-        <input type="text" class="form-control" placeholder="monthlySave" aria-label="monthlySave" aria-describedby="basic-addon2" th:field="*{monthlySave}">
-        <span class="validationError"
-              th:if="${#fields.hasErrors('monthlySave')}"
-              th:errors="*{monthlySave}">monthlySave error</span>
+<!--        <input type="text" class="form-control" placeholder="monthlySave" aria-label="monthlySave" aria-describedby="basic-addon2" th:field="*{monthlySave}">-->
+<!--        <span class="validationError"-->
+<!--              th:if="${#fields.hasErrors('monthlySave')}"-->
+<!--              th:errors="*{monthlySave}">monthlySave error</span>-->
+<!--    </div>-->
+<!--    <br/>-->
+
+    <div class="form-group col-md-6">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="MonthlySave"><i class="fa fa-user"></i></span>
+            </div>
+            <input type="text" class="form-control" placeholder="MonthlySave" aria-label="MonthlySave" aria-describedby="MonthlySave"
+                   th:field="*{monthlySave}">
+            <span class="validationError"
+                  th:if="${#fields.hasErrors('monthlySave')}"
+                  th:errors="*{monthlySave}">MonthlySave Error</span>
+        </div>
     </div>
-    <br/>
 
     <label for="transport">transport </label>
 
