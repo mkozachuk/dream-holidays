@@ -1,5 +1,3 @@
-DELETE FROM country;
-
 INSERT INTO country
 VALUES (null, 'AF', 'Afghanistan');
 INSERT INTO country

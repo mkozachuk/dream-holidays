@@ -3,70 +3,158 @@
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Dream Holidays</title>
-    <img th:src="@{/img/logo1.png}"/>
+<!--    <title>Dream Holidays</title>-->
+<!--    <img th:src="@{/img/logo1.png}"/>-->
 
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" th:href="@{/style.css}"/>
-    <link rel="stylesheet" th:href="@{/shards.css}"/>
-    <link rel="stylesheet" th:href="@{/shards-extras.css}"/>
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+<!--    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">-->
+<!--    <link rel="stylesheet" th:href="@{/style.css}"/>-->
+<!--    <link rel="stylesheet" th:href="@{/shards.css}"/>-->
+<!--    <link rel="stylesheet" th:href="@{/shards-extras.css}"/>-->
+
+    <title>Registration</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+    <!--===============================================================================================-->
+    <link th:href="@{/fonts/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet" />
+    <!--===============================================================================================-->
+    <link th:href="@{/fonts/iconic/css/material-design-iconic-font.min.css}" rel="stylesheet" />
+    <!--===============================================================================================-->
+    <link th:href="@{/vendor/animate/animate.css}" rel="stylesheet" />
+    <!--===============================================================================================-->
+    <link th:href="@{/vendor/css-hamburgers/hamburgers.min.css}" rel="stylesheet" />
+    <!--===============================================================================================-->
+    <link th:href="@{/vendor/animsition/css/animsition.min.css}" rel="stylesheet" />
+    <!--===============================================================================================-->
+    <link th:href="@{/vendor/select2/select2.min.css}" rel="stylesheet" />
+    <!--===============================================================================================-->
+    <link th:href="@{/vendor/daterangepicker/daterangepicker.css}" rel="stylesheet" />
+    <!--===============================================================================================-->
+    <link th:href="@{css/util.css}" rel="stylesheet" />
+    <link th:href="@{css/main.css}" rel="stylesheet" />
+    <!--===============================================================================================-->
 
 </head>
-<form method="POST" th:action="@{/register}" id="registrationForm">
+<!--<form method="POST" th:action="@{/register}" id="registrationForm">-->
 
-    <div class="form-group col-md-6">
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="username"><i class="fa fa-user"></i></span>
-            </div>
-            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="username" name="username">
+<!--    <div class="form-group col-md-6">-->
+<!--        <div class="input-group">-->
+<!--            <div class="input-group-prepend">-->
+<!--                <span class="input-group-text" id="username"><i class="fa fa-user"></i></span>-->
+<!--            </div>-->
+<!--            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="username" name="username">-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--&lt;!&ndash;    <label for="username">Username: </label>&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="text" name="username"/><br/>&ndash;&gt;-->
+
+<!--    <div class="form-group col-md-6">-->
+<!--        <div class="input-group">-->
+<!--            <div class="input-group-prepend">-->
+<!--                <span class="input-group-text" id="password"><i class="fa fa-user"></i></span>-->
+<!--            </div>-->
+<!--            <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password" name="password">-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--&lt;!&ndash;    <label for="password">Password: </label>&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="password" name="password"/><br/>&ndash;&gt;-->
+
+<!--    <div class="form-group col-md-6">-->
+<!--        <div class="input-group">-->
+<!--            <div class="input-group-prepend">-->
+<!--                <span class="input-group-text" id="conf-password"><i class="fa fa-user"></i></span>-->
+<!--            </div>-->
+<!--            <input type="password" class="form-control" placeholder="ConfirmPassword" aria-label="ConfirmPassword" aria-describedby="conf-password" name="confirm">-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--&lt;!&ndash;    <label for="confirm">Confirm password: </label>&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="password" name="confirm"/><br/>&ndash;&gt;-->
+
+<!--    <div class="form-group col-md-6">-->
+<!--        <div class="input-group">-->
+<!--            <div class="input-group-prepend">-->
+<!--                <span class="input-group-text" id="email"><i class="fa fa-user"></i></span>-->
+<!--            </div>-->
+<!--            <input type="text" class="form-control" placeholder="email" aria-label="email" aria-describedby="email" name="email">-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--&lt;!&ndash;    <label for="email">email: </label>&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="text" name="email"/><br/>&ndash;&gt;-->
+<!--    <button type="submit" class="btn btn-primary btn-pill" value="Register">Sing Up</button>-->
+
+<!--&lt;!&ndash;    <input type="submit" value="Register"/>&ndash;&gt;-->
+<!--</form>-->
+
+
+<div class="limiter">
+    <div class="container-login100" style="background-image: url('images/back.jpg');">
+        <div class="wrap-login100">
+            <form method="POST" th:action="@{/register}" id="registrationForm" class="login100-form validate-form">
+					<span class="login100-form-logo">
+						<i class="zmdi zmdi-landscape"></i>
+					</span>
+
+                <span class="login100-form-title p-b-34 p-t-27">
+						Sing Up
+					</span>
+
+                <div class="wrap-input100 validate-input" data-validate = "Enter username" id="username">
+                    <input class="input100" type="text" name="username" placeholder="Username">
+                    <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate="Enter password" id="password">
+                    <input class="input100" type="password" name="password" placeholder="Password">
+                    <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate="Confirm password" id="conf-password">
+                    <input class="input100" type="password" name="confirm" placeholder="ConfirmPassword">
+                    <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate="Enter email" id="email">
+                    <input class="input100" type="text" name="email" placeholder="email">
+                    <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                </div>
+
+
+                <div class="container-login100-form-btn">
+                    <button type="submit" class="login100-form-btn" value="Register">Sing Up</button>
+                </div>
+
+
+            </form>
         </div>
     </div>
+</div>
 
-<!--    <label for="username">Username: </label>-->
-<!--    <input type="text" name="username"/><br/>-->
 
-    <div class="form-group col-md-6">
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="password"><i class="fa fa-user"></i></span>
-            </div>
-            <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password" name="password">
-        </div>
-    </div>
 
-<!--    <label for="password">Password: </label>-->
-<!--    <input type="password" name="password"/><br/>-->
+<!--===============================================================================================-->
+<script th:src="@{/vendor/jquery/jquery-3.2.1.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{/vendor/animsition/js/animsition.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{/vendor/bootstrap/js/popper.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{/vendor/select2/select2.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{/vendor/daterangepicker/moment.min.js}"></script>
+<script th:src="@{/vendor/daterangepicker/daterangepicker.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{/vendor/countdowntime/countdowntime.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{/js/main.js}"></script>
 
-    <div class="form-group col-md-6">
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="conf-password"><i class="fa fa-user"></i></span>
-            </div>
-            <input type="password" class="form-control" placeholder="ConfirmPassword" aria-label="ConfirmPassword" aria-describedby="conf-password" name="confirm">
-        </div>
-    </div>
-
-<!--    <label for="confirm">Confirm password: </label>-->
-<!--    <input type="password" name="confirm"/><br/>-->
-
-    <div class="form-group col-md-6">
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="email"><i class="fa fa-user"></i></span>
-            </div>
-            <input type="text" class="form-control" placeholder="email" aria-label="email" aria-describedby="email" name="email">
-        </div>
-    </div>
-
-<!--    <label for="email">email: </label>-->
-<!--    <input type="text" name="email"/><br/>-->
-    <button type="submit" class="btn btn-primary btn-pill" value="Register">Sing Up</button>
-
-<!--    <input type="submit" value="Register"/>-->
-</form>
 </body>
 </html>

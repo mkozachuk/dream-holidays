@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -68,6 +69,18 @@ public class Holiday {
 
     @Transient
     private List<String> interestingPlacesUrls;
+
+    @Transient
+    private int timePercent;
+
+    @Transient
+    private BigDecimal currentCapital;
+
+    @Transient
+    private String enoughCapital;
+
+    @Transient
+    private int capitalPercent;
 
 
 

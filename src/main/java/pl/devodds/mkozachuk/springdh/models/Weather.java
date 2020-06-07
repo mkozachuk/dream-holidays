@@ -7,7 +7,7 @@ import java.util.List;
 
 @Data
 public class Weather {
-    public Weather(String currentWeather, List<WeatherData> forecast) {
+    public Weather(String currentWeather, List<OneDayWeather> forecast) {
         this.currentWeather = currentWeather;
         this.forecast = forecast;
     }
@@ -16,5 +16,5 @@ public class Weather {
     }
 
     String currentWeather;
-    List<WeatherData> forecast;
+    List<OneDayWeather> forecast;
 }

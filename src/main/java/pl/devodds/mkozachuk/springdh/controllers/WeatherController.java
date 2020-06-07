@@ -6,8 +6,11 @@ import net.aksingh.owmjapis.model.CurrentWeather;
 import net.aksingh.owmjapis.model.HourlyWeatherForecast;
 import net.aksingh.owmjapis.model.param.WeatherData;
 import org.springframework.stereotype.Controller;
+import pl.devodds.mkozachuk.springdh.models.OneDayWeather;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class WeatherController {
@@ -54,6 +57,39 @@ public class WeatherController {
         owm.setUnit(OWM.Unit.METRIC);
         HourlyWeatherForecast hw = owm.hourlyWeatherForecastByCityName(city);
         return hw.getDataList();
+    }
+
+    public List<OneDayWeather> dailyForecastList(List<WeatherData> forecas){
+        List<OneDayWeather> currentForecast = new ArrayList<>();
+        for(WeatherData data : forecas){
+            OneDayWeather dayWeather = new OneDayWeather();
+            if(data.hasDateTime()) {
+                dayWeather.setDate(data.getDateTime());
+            }
+            if(data.hasCloudData()) {
+                dayWeather.setCloudData(data.getCloudData());
+            }
+            if(data.hasHumidity()) {
+                dayWeather.setHumidity(data.getHumidity());
+            }
+            if(data.hasTempData()) {
+                dayWeather.setTempData(data.getTempData());
+            }
+            if(data.hasMainData()) {
+                if(data.getMainData().hasTemp()) {
+                    dayWeather.setTemp(data.getMainData().getTemp());
+                }
+                if(data.getMainData().hasTempMax()) {
+                    dayWeather.setMaxTemp(data.getMainData().getTempMax());
+                }
+                if(data.getMainData().hasTempMin()) {
+                    dayWeather.setMinTemp(data.getMainData().getTempMin());
+                }
+            }
+            currentForecast.add(dayWeather);
+        }
+
+        return currentForecast;
     }
 
     public void weather(List<WeatherData> list){

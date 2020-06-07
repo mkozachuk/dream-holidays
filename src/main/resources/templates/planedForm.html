@@ -2,119 +2,113 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Taco Cloud</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link th:href="@{/shards.css}" rel="stylesheet" />
+
+    <title>Additional info</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <!--===============================================================================================-->
+    <link th:href="@{/fonts/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet"/>
+    <!--===============================================================================================-->
+    <link th:href="@{/fonts/iconic/css/material-design-iconic-font.min.css}" rel="stylesheet"/>
+    <!--===============================================================================================-->
+    <link th:href="@{/vendor/animate/animate.css}" rel="stylesheet"/>
+    <!--===============================================================================================-->
+    <link th:href="@{/vendor/css-hamburgers/hamburgers.min.css}" rel="stylesheet"/>
+    <!--===============================================================================================-->
+    <link th:href="@{/vendor/animsition/css/animsition.min.css}" rel="stylesheet"/>
+    <!--===============================================================================================-->
+    <link th:href="@{/vendor/select2/select2.min.css}" rel="stylesheet"/>
+    <!--===============================================================================================-->
+    <link th:href="@{/vendor/daterangepicker/daterangepicker.css}" rel="stylesheet"/>
+    <!--===============================================================================================-->
+    <link th:href="@{/css/util.css}" rel="stylesheet"/>
+    <link th:href="@{/css/main.css}" rel="stylesheet"/>
+    <!--===============================================================================================-->
 </head>
 
 <body>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script type="application/json" src="/js/shards.js"></script>
-<script type="text/javascript" th:src="@{/js/shards.js}"></script>
-<form method="POST" th:action="@{/logout}" id="logoutForm">
-    <input class="btn btn-secondary btn-pill" type="submit" value="Logout"/>
-</form>
+<div class="limiter">
+    <div class="container-login100" style="background-image: url('/images/back.jpg');">
+        <div class="wrap-login100">
+            <form method="POST" th:action="@{/holidays/planed}" th:object="${holiday}"
+                  id="holidayForm" class="login100-form validate-form">
+					<span class="login100-form-logo">
+						<i class="zmdi zmdi-landscape"></i>
+					</span>
 
-<form method="POST" th:action="@{/holidays/planed}" th:object="${holiday}"
-      id="holidayForm">
-    <h1>Additional info about your holidays</h1>
+                <span class="login100-form-title p-b-34 p-t-27">
+						Additional information
+					</span>
 
-
-    <img th:src="@{/img/logo1.png}"/>
-    <a th:href="@{/design}" id="another">Change place</a><br/>
-
-
-    <ul>
-        <li th:each="place : ${holiday.place}"><span th:text="${place.country}">taco name</span></li>
-    </ul>
-
-    <div th:if="${#fields.hasErrors()}">
-        <span class="validationError">
-        Please correct the problems below and resubmit.
-        </span>
-    </div>
-
-    <h3>My add info</h3>
-
-    <!--    <div >-->
-
-    <!--            <input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1" th:field="*{name}">-->
-    <!--            <span class="validationError"-->
-    <!--                  th:if="${#fields.hasErrors('name')}"-->
-    <!--                  th:errors="*{name}">Name Error</span>-->
-
-    <!--    </div>-->
+                <div class="wrap-input100 validate-input" data-validate="Provide name" id="name">
+                    <input th:field="*{name}" class="input100" type="text" name="name" placeholder="name">
+                    <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                </div>
 
 
-    <div class="form-group col-md-6">
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="Name"><i class="fa fa-user"></i></span>
-            </div>
-            <input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="Name"
-                   th:field="*{name}">
-            <span class="validationError"
-                  th:if="${#fields.hasErrors('name')}"
-                  th:errors="*{name}">Name Error</span>
+                <select class="custom-select" type="text" th:field="${holiday.transport}">
+                    <option value="1">By plane</option>
+                    <option value="3">By car</option>
+                    <option value="2">Railway</option>
+                    <option value="4">Ship</option>
+                </select>
+                <span class="focus-input100" data-placeholder="&#xf191;"></span>
+
+                <input type="date" class="form-control" id="datepicker-example" th:field="*{startDate}">
+                <span class="validationError"
+                      th:if="${#fields.hasErrors('startDate')}"
+                      th:errors="*{startDate}">Street Error</span>
+
+                <!-- JavaScript -->
+                <script th:inline="javascript">
+                    $('#datepicker-example').datepicker({
+                        calendarWeeks: true,
+                        autoclose: true,
+                        todayHighlight: true
+                    });
+                </script>
+
+
+                <div class="container-login100-form-btn">
+                    <button type="submit" class="login100-form-btn" value="Create Holiday">Create Holiday</button>
+                </div>
+
+
+            </form>
         </div>
     </div>
-
-    <!-- tag::allButValidation[] -->
-    <br/>
-
-    <label for="date">Date: </label>
+</div>
 
 
-    <input type="date" class="form-control" id="datepicker-example" th:field="*{startDate}">
-    <span class="validationError"
-          th:if="${#fields.hasErrors('startDate')}"
-          th:errors="*{startDate}">Street Error</span>
+<!--===============================================================================================-->
+<script th:src="@{/vendor/jquery/jquery-3.2.1.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{/vendor/animsition/js/animsition.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{/vendor/bootstrap/js/popper.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{/vendor/select2/select2.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{/vendor/daterangepicker/moment.min.js}"></script>
+<script th:src="@{/vendor/daterangepicker/daterangepicker.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{/vendor/countdowntime/countdowntime.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{/js/main.js}"></script>
 
-    <!-- JavaScript -->
-    <script th:inline="javascript">
-        $('#datepicker-example').datepicker({
-            calendarWeeks: true,
-            autoclose: true,
-            todayHighlight: true
-        });
-    </script>
-
-
-    <!--    <input type="date" th:field="*{startDate}">-->
-    <!--    <span class="validationError"-->
-    <!--          th:if="${#fields.hasErrors('startDate')}"-->
-    <!--          th:errors="*{startDate}">Street Error</span>-->
-
-    <!--    <br/>-->
-
-    <label for="place">Place: </label>
-    <span th:text="${holiday.place}"></span>
-
-    <!--    <input type="text" th:field="*{place}"/>-->
-    <!--    &lt;!&ndash; end::allButValidation[] &ndash;&gt;-->
-    <!--    <span class="validationError"-->
-    <!--          th:if="${#fields.hasErrors('place')}"-->
-    <!--          th:errors="*{place}">City Error</span>-->
-    <!-- tag::allButValidation[] -->
-    <br/>
-
-
-    <label for="transport">transport </label>
-
-    <select class="custom-select" type="text" th:field="${holiday.transport}">
-        <option value="1">By plane</option>
-        <option value="3">By car</option>
-        <option value="2">Railway</option>
-        <option value="4">Ship</option>
-    </select>
-
-    <br/>
-
-    <button type="submit" class="btn btn-primary btn-pill">Create Holiday</button>
-
-
-</form>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script type="application/json" src="/js/shards.js"></script>
+<script type="text/javascript" th:src="@{/js/shards.js}"></script>
 </body>
 </html>
