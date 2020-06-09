@@ -4,8 +4,7 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -31,6 +30,7 @@ public class Holiday {
     private Long holiday_id;
 
 //    @NotBlank(message = "Name is required")
+    @NotNull
     @Size(min = 5, message = "Name must be at least 5 characters long")
     @Column(name = "name")
     private String name;
@@ -58,7 +58,9 @@ public class Holiday {
     private Weather weather;
 
     //dreamed only
+
     @Column(name = "price")
+    @Positive
     private BigDecimal price;
 
     private BigDecimal startCapital;

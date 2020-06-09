@@ -472,8 +472,9 @@
                                     <div class="px-4">
                                         <h5>Financial Status</h5>
                                         <p th:text="'Holiday price: $' + ${i.price}"></p>
-                                        <p th:text="'Current capital: ' + ${i.currentCapital}"></p>
-                                        <p th:text="'You\'ll have enough capital at: ' + ${i.enoughCapital}"></p>
+                                        <p th:text="'Current capital: $' + ${i.currentCapital}"></p>
+                                        <p th:text="'Your monthly saves is: $' + ${i.monthlySave} +
+                                        ' You\'ll have enough capital at: ' + ${i.enoughCapital}"></p>
                                         <div th:if="${i.capitalPercent < 70}">
                                             <div class="progress">
                                                 <div class="progress-bar progress-bar-striped progress-bar-animated"

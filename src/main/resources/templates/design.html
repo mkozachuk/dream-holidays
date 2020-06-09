@@ -3,14 +3,6 @@
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<!--    <title>Taco Cloud</title>-->
-
-<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
-<!--    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
-<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">-->
-<!--    <link rel="stylesheet" th:href="@{/style.css}"/>-->
-<!--    <link rel="stylesheet" th:href="@{/shards.css}"/>-->
-<!--    <link rel="stylesheet" th:href="@{/shards-extras.css}"/>-->
 
     <title>New Place</title>
     <meta charset="UTF-8">
@@ -36,103 +28,9 @@
     <link th:href="@{/css/main.css}" rel="stylesheet" />
     <!--===============================================================================================-->
 
-<!--</head>-->
-
 </head>
 
 <body>
-<!--<h1>Provide holiday place</h1>-->
-<!--<img th:src="@{/img/logo1.png}"/>-->
-
-
-<!--&lt;!&ndash; tag::formTag[] &ndash;&gt;-->
-<!--<form method="POST" th:object="${design}" th:action="@{/place/new-place}" id="designForm">-->
-
-<!--    <div>-->
-
-<!--        <h3>Real or Dream</h3>-->
-<!--        <div>-->
-<!--&lt;!&ndash;            <div class="custom-control custom-radio mb-3">&ndash;&gt;-->
-<!--&lt;!&ndash;                <input type="radio" id="planed" name="customRadio" class="custom-control-input" th:field="*{dreamed}" th:value="false" th:text="Planed">&ndash;&gt;-->
-<!--&lt;!&ndash;            </div>&ndash;&gt;-->
-<!--&lt;!&ndash;            <div class="custom-control custom-radio mb-3">&ndash;&gt;-->
-<!--&lt;!&ndash;                <input type="radio" id="dreamed" name="customRadio" class="custom-control-input" th:field="*{dreamed}" th:value="true" th:text="Dreamed">&ndash;&gt;-->
-<!--&lt;!&ndash;            </div>&ndash;&gt;-->
-
-<!--&lt;!&ndash;        <input type="checkbox" th:text="checkIfDreamed" th:field="*{dreamed}"/>&ndash;&gt;-->
-<!--        <input type="radio" th:field="*{dreamed}" th:value="false" th:text="Planed"/>-->
-<!--        <input type="radio" th:field="*{dreamed}" th:value="true" th:text="Dreamed"/>-->
-<!--        </div>-->
-
-
-<!--        <h3>Country:</h3>-->
-<!--        &lt;!&ndash;        <input type="text" th:field="*{country}"/>&ndash;&gt;-->
-<!--        <select class="custom-select" th:field="*{country}">-->
-<!--            <option selected value="">Choose country</option>-->
-<!--            <option th:each="country : ${countyList}" th:value="${country.getId()}"-->
-<!--                    th:text="${country.getCountryName()}">-->
-<!--            </option>-->
-<!--        </select>-->
-<!--        &lt;!&ndash; end::all[] &ndash;&gt;-->
-<!--&lt;!&ndash;        <span th:text="${#fields.hasErrors('country')}">XXX</span>&ndash;&gt;-->
-<!--        <span class="validationError"-->
-<!--              th:if="${#fields.hasErrors('country')}"-->
-<!--              th:errors="*{country}">Name Error</span>-->
-<!--        &lt;!&ndash; tag::all[] &ndash;&gt;-->
-<!--        <br/>-->
-
-<!--        <h3>City:</h3>-->
-
-<!--        <div>-->
-
-<!--                <input type="text" class="form-control" placeholder="City" aria-label="City"-->
-<!--                       aria-describedby="basic-addon1" th:field="*{city}">-->
-<!--&lt;!&ndash;                <span th:text="${#fields.hasErrors('city')}">XXX</span>&ndash;&gt;-->
-<!--                <span class="validationError"-->
-<!--                      th:if="${#fields.hasErrors('city')}"-->
-<!--                      th:errors="*{city}">Name Error</span>-->
-
-<!--        </div>-->
-<!--        <br/>-->
-
-<!--        <h3>Street:</h3>-->
-
-
-<!--            <div>-->
-
-<!--                <input type="text" class="form-control" placeholder="Street" aria-label="Street"-->
-<!--                       aria-describedby="basic-addon2" th:field="*{street}">-->
-<!--&lt;!&ndash;                <span th:text="${#fields.hasErrors('street')}">XXX</span>&ndash;&gt;-->
-<!--                <span class="validationError"-->
-<!--                      th:if="${#fields.hasErrors('street')}"-->
-<!--                      th:errors="*{street}">Name Error</span>-->
-<!--            </div>-->
-
-<!--        &lt;!&ndash; tag::all[] &ndash;&gt;-->
-<!--        <br/>-->
-
-<!--        <h3>ZIp-Code:</h3>-->
-<!--        <div>-->
-<!--            <input type="text" class="form-control" placeholder="Zip" aria-label="Zip" aria-describedby="basic-addon3"-->
-<!--                   th:field="*{zip}">-->
-<!--&lt;!&ndash;            <span th:text="${#fields.hasErrors('zip')}">XXX</span>&ndash;&gt;-->
-<!--            <span class="validationError"-->
-<!--                  th:if="${#fields.hasErrors('zip')}"-->
-<!--                  th:errors="*{zip}">Name Error</span>-->
-<!--        </div>-->
-<!--        <br/>-->
-<!--    </div>-->
-<!--    </div>-->
-<!--    <button type="submit" class="btn btn-primary btn-pill">Submit your place</button>-->
-
-<!--</form>-->
-
-<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>-->
-<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>-->
-<!--<script type="text/javascript" th:href="@{js/shards.js}"></script>-->
-<!--<script type="text/javascript" th:href="@{js/shards.min.js}"></script>-->
-<!--****************************-->
 
 <div class="limiter">
     <div class="container-login100" style="background-image: url('/images/back.jpg');">
@@ -151,7 +49,6 @@
                     <input type="radio" th:field="*{dreamed}" th:value="true" th:text="Dreamed"/>
                 </div>
 
-
                     <select class="custom-select" id="dropDownSelect1" th:field="*{country}">
                         <option selected value="">Choose country</option>
                         <option th:each="country : ${countyList}" th:value="${country.getId()}"
@@ -159,7 +56,6 @@
                         </option>
                     </select>
                     <span class="focus-input100" data-placeholder="&#xf191;"></span>
-
 
                 <div class="wrap-input100 validate-input" data-validate="enter city" id="city">
                     <input th:field="*{city}" class="input100" type="text" name="city" placeholder="city">

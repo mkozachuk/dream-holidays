@@ -4,7 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pl.devodds.mkozachuk.springdh.models.Country;
 import pl.devodds.mkozachuk.springdh.models.Holiday;
@@ -58,7 +60,7 @@ public class PlaceController {
 
         return "design";
     }
-
+//
     @PostMapping("/new-place")
     public String processDesign(@Valid @ModelAttribute("design") Place design, Errors errors, @ModelAttribute Holiday holiday, @AuthenticationPrincipal User user) {
         if (errors.hasErrors()) {

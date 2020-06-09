@@ -10,14 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
-import pl.devodds.mkozachuk.springdh.models.Holiday;
-import pl.devodds.mkozachuk.springdh.models.Transport;
-import pl.devodds.mkozachuk.springdh.models.User;
-import pl.devodds.mkozachuk.springdh.models.Weather;
+import pl.devodds.mkozachuk.springdh.models.*;
 import pl.devodds.mkozachuk.springdh.repositories.HolidayRepository;
 
 import javax.validation.Valid;
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.math.RoundingMode;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -45,6 +43,7 @@ public class HolidayController {
         this.weatherController = weatherController;
         this.holidayImageController = holidayImageController;
     }
+
 
     @GetMapping("/dreamed")
     public String dreamedForm(@AuthenticationPrincipal User user,
@@ -105,57 +104,64 @@ public class HolidayController {
     @GetMapping("/my-holidays")
     public String holidaysForm(@AuthenticationPrincipal User user,
                                Model model) {
+                user.setUsersHolidays(getUsersHolidays(user));
 
-        user.setUsersHolidays(getUsersHolidays(user));
+        if(user.getUsersHolidays().size() != 0) {
 
-        user.setCurrentDate(new Date());
 
-        for (Holiday holiday : user.getUsersHolidays()) {
-            if (!holiday.getPlace().isDreamed()) {
-                holiday.setTimePercent(calculateTimeProgress(holiday, user));
-                holidayRepository.save(holiday);
-            }else {
-                holiday.setCurrentCapital(calculateCurrentCapital(holiday, user));
-                holiday.setCapitalPercent(calculateCapitalProgress(holiday,user));
-                holiday.setEnoughCapital(calculateWhenEnoughCapital(holiday, user));
-                holidayRepository.save(holiday);
-            }
 
-            try {
-                holiday.setWeather(new Weather(weatherController.getWeatherFromCity(holiday.getPlace().getCity()), weatherController.dailyForecastList(weatherController.forecast(holiday.getPlace().getCity()))));
-            } catch (APIException e) {
-                log.error("APIE");
-            }
-            holiday.setImgs(new ArrayList<>());
-            holiday.setInterestingPlacesUrls(new ArrayList<>());
+            user.setCurrentDate(new Date());
 
-            try {
-                List<Result> res = holidayImageController.search(holiday.getPlace().getCity() + " beautiful photo");
-                for (Result result : res) {
+            for (Holiday holiday : user.getUsersHolidays()) {
+                if (!holiday.getPlace().isDreamed()) {
+                    holiday.setTimePercent(calculateTimeProgress(holiday, user));
+                    holidayRepository.save(holiday);
+                } else {
+                    holiday.setCurrentCapital(calculateCurrentCapital(holiday, user));
+                    holiday.setCapitalPercent(calculateCapitalProgress(holiday, user));
+                    holiday.setEnoughCapital(calculateWhenEnoughCapital(holiday, user));
+                    holidayRepository.save(holiday);
+                }
+
+                try {
+                    holiday.setWeather(new Weather(weatherController.getWeatherFromCity(holiday.getPlace().getCity()), weatherController.dailyForecastList(weatherController.forecast(holiday.getPlace().getCity()))));
+                } catch (APIException e) {
+                    log.error("APIE");
+                }
+                holiday.setImgs(new ArrayList<>());
+                holiday.setInterestingPlacesUrls(new ArrayList<>());
+
+                try {
+                    List<Result> res = holidayImageController.search(holiday.getPlace().getCity() + " beautiful photo");
+                    for (Result result : res) {
 //                    System.out.println(result.getImage().getContextLink());
-                    System.out.println(result.getPagemap().get("cse_image"));
-                    holiday.getImgs().add(result.getPagemap().get("cse_image").toString().replace("[{src=", "").replace("}]", ""));
+                        System.out.println(result.getPagemap().get("cse_image"));
+                        holiday.getImgs().add(result.getPagemap().get("cse_image").toString().replace("[{src=", "").replace("}]", ""));
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
+
+                try {
+                    List<Result> trip = holidayImageController.search("site:tripadvisor.com " + holiday.getPlace().getCity() + " attractions\"");
+                    for (Result res : trip) {
+                        holiday.getInterestingPlacesUrls().add(res.getLink());
+                        System.out.println("TRIP: " + res.getLink());
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 
-            try {
-                List<Result> trip = holidayImageController.search("site:tripadvisor.com \"" + holiday.getPlace().getCity() + " attractions\"");
-                for (Result res : trip) {
-                    holiday.getInterestingPlacesUrls().add(res.getLink());
-                    System.out.println("TRIP: " + res.getLink());
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+
+            model.addAttribute(user);
+
+
+            return "holidays";
+        }else {
+
+            return "redirect:/place/new-place";
         }
-
-
-        model.addAttribute(user);
-
-
-        return "holidays";
     }
 
     public List<Holiday> getUsersHolidays(User user) {
@@ -177,13 +183,13 @@ public class HolidayController {
     }
 
     public BigDecimal calculateCurrentCapital(Holiday holiday, User user) {
-        BigDecimal currentCapital = new BigDecimal(0);
+        BigDecimal currentCapital;
         BigDecimal daySave = holiday.getMonthlySave().divide(new BigDecimal(30), 2, RoundingMode.HALF_UP);
         double daysFromCreate = (user.getCurrentDate().getTime() - holiday.getCreatedAt().getTime()) / (24.0 * 60.0 * 60.0 * 1000);
         currentCapital = holiday.getStartCapital().add(daySave.multiply(new BigDecimal(daysFromCreate)));
 
-
-        return currentCapital;
+        MathContext mathContext = new MathContext(3);
+        return currentCapital.round(mathContext);
     }
 
     public int calculateCapitalProgress(Holiday holiday, User user) {
