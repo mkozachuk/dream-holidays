@@ -21,6 +21,17 @@
 
 
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168906270-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-168906270-1');
+    </script>
+
+
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Dream holidays</title>
@@ -42,7 +53,7 @@
     <div class="container">
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark pt-4 px-0">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" th:href="@{/}">
                 <img th:src="@{/img/agency-landing/shards-logo-white.svg}" th:class="mr-2" alt="Dream holidays">
                 Dream holidays
             </a>
@@ -56,14 +67,14 @@
                         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#our-services">Our Services</a>
+                        <a class="nav-link" href="#our-services">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#blog">Blog</a>
+                        <a class="nav-link" th:href="@{/holidays/my-holidays}">My Holidays</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#testimonials">Testimonials</a>
-                    </li>
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" href="#testimonials">Testimonials</a>-->
+<!--                    </li>-->
                 </ul>
 
                 <ul class="navbar-nav ml-auto">

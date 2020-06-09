@@ -2,6 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168906270-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-168906270-1');
+    </script>
+
+
 
     <title>Additional info</title>
     <meta charset="UTF-8">
@@ -25,6 +36,8 @@
     <!--===============================================================================================-->
     <link th:href="@{/css/util.css}" rel="stylesheet"/>
     <link th:href="@{/css/main.css}" rel="stylesheet"/>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css"/>
     <!--===============================================================================================-->
 
 </head>
@@ -57,7 +70,7 @@
                 </select>
                 <span class="focus-input100" data-placeholder="&#xf191;"></span>
 
-                <input type="date" class="form-control" id="datepicker-example" th:field="*{startDate}">
+                <input type="text" class="form-control" id="datepick" th:field="*{startDate}">
 
 
                 <div class="container-login100-form-btn">
@@ -97,15 +110,13 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 <!-- Include Bootstrap Datepicker -->
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+<!-- JavaScript -->
 
 <script type="application/json" src="/js/shards.js"></script>
 <script type="text/javascript" th:src="@{/js/shards.js}"></script>
-<!-- JavaScript -->
 <script th:inline="javascript">
-    $('#datepicker-example').datepicker({
+    $('#datepick').datepicker({
         calendarWeeks: true,
         autoclose: true,
         todayHighlight: true
@@ -113,3 +124,4 @@
 </script>
 </body>
 </html>
+

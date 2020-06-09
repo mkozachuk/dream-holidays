@@ -8,10 +8,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import pl.devodds.mkozachuk.springdh.models.Country;
-import pl.devodds.mkozachuk.springdh.models.Holiday;
-import pl.devodds.mkozachuk.springdh.models.Place;
-import pl.devodds.mkozachuk.springdh.models.User;
+import pl.devodds.mkozachuk.springdh.models.*;
+import pl.devodds.mkozachuk.springdh.repositories.CityRepository;
 import pl.devodds.mkozachuk.springdh.repositories.HolidayRepository;
 import pl.devodds.mkozachuk.springdh.repositories.PlaceRepository;
 import pl.devodds.mkozachuk.springdh.repositories.UserRepository;
@@ -28,12 +26,14 @@ import java.util.List;
 public class PlaceController {
 
     private CountryController countryController;
+    private CityController cityController;
     private PlaceRepository placeRepository;
     private UserRepository userRepository;
 
 
-    public PlaceController(CountryController countryController, PlaceRepository placeRepository, UserRepository userRepository){
+    public PlaceController(CountryController countryController, CityController cityController, PlaceRepository placeRepository, UserRepository userRepository){
         this.countryController = countryController;
+        this.cityController = cityController;
         this.placeRepository = placeRepository;
         this.userRepository = userRepository;
     }
@@ -53,6 +53,8 @@ public class PlaceController {
         model.addAttribute("design", design());
         List<Country> allCounties = new ArrayList<>(countryController.getAllCounties());
         model.addAttribute("countyList", allCounties);
+        List<City> allCities = new ArrayList<>(cityController.getAll());
+        model.addAttribute("cityList", allCities);
 
         String username = principal.getName();
         User user = userRepository.findByUsername(username);
@@ -62,15 +64,17 @@ public class PlaceController {
     }
 //
     @PostMapping("/new-place")
-    public String processDesign(@Valid @ModelAttribute("design") Place design, Errors errors, @ModelAttribute Holiday holiday, @AuthenticationPrincipal User user) {
-        if (errors.hasErrors()) {
-            return "design";
-        }
+    public String processDesign(@ModelAttribute("design") Place design, Errors errors, @ModelAttribute Holiday holiday, @AuthenticationPrincipal User user) {
+//        if (errors.hasErrors()) {
+//            return "design";
+//        }
 
         design.setUser(user);
         Place saved = placeRepository.save(design);
         log.info("Place has been saved: " + design);
         holiday.addDesign(saved);
+
+
 
         if(design.isDreamed()){
             return "redirect:/holidays/dreamed";

@@ -3,6 +3,17 @@
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168906270-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-168906270-1');
+    </script>
+
+
 
     <title>New Place</title>
     <meta charset="UTF-8">
@@ -57,10 +68,18 @@
                     </select>
                     <span class="focus-input100" data-placeholder="&#xf191;"></span>
 
-                <div class="wrap-input100 validate-input" data-validate="enter city" id="city">
-                    <input th:field="*{city}" class="input100" type="text" name="city" placeholder="city">
-                    <span class="focus-input100" data-placeholder="&#xf191;"></span>
-                </div>
+                <select class="custom-select" id="dropDownSelect2" th:field="*{city}">
+                    <option selected value="">Choose city</option>
+                    <option th:each="city : ${cityList}" th:value="${city.id}"
+                            th:text="${city.cityName}">
+                    </option>
+                </select>
+                <span class="focus-input100" data-placeholder="&#xf191;"></span>
+
+<!--                <div class="wrap-input100 validate-input" data-validate="enter city" id="city">-->
+<!--                    <input th:field="*{city}" class="input100" type="text" name="city" placeholder="city">-->
+<!--                    <span class="focus-input100" data-placeholder="&#xf191;"></span>-->
+<!--                </div>-->
 
                 <div class="wrap-input100 validate-input" data-validate="enter street" id="street">
                     <input th:field="*{street}" class="input100" type="text" name="street" placeholder="street">
@@ -99,5 +118,6 @@
 <script th:src="@{/vendor/countdowntime/countdowntime.js}"></script>
 <!--===============================================================================================-->
 <script th:src="@{/js/main.js}"></script>
+<script th:src="@{/js/shards.js}"></script>
 </body>
 </html>

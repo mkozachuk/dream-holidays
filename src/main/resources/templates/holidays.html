@@ -1,239 +1,18 @@
-<!--<!DOCTYPE html>-->
-<!--<html xmlns="http://www.w3.org/1999/xhtml"-->
-<!--      xmlns:th="http://www.thymeleaf.org">-->
-
-<!--<head>-->
-<!--    <title>Taco Cloud</title>-->
-<!--    <img th:src="@{/img/logo1.png}"/>-->
-<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"-->
-<!--          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
-<!--    <link th:href="@{/shards.css}" rel="stylesheet"/>-->
-<!--    <link th:href="@{/style.css}" rel="stylesheet"/>-->
-<!--</head>-->
-<!--<body>-->
-
-
-<!--<H1>All Holidays</H1>-->
-
-<!--&lt;!&ndash;/*@thymesVar id="holiday" type="Holiday"*/&ndash;&gt;-->
-<!--<form method="GET" th:action="@{/holidays/my-holidays}" th:object="${user}">-->
-<!--    <div class="holidays">-->
-<!--        <div>-->
-<!--            <select class="custom-select" id="example" onChange="CityChange()">-->
-<!--                <option disabled selected th:value="currentholiday">Choose your holiday</option>-->
-<!--                <option th:each="i : ${user.usersHolidays}" th:value="${i.name}"-->
-<!--                        th:text="${i.name} + '' + ${i.place.country}">-->
-
-<!--                </option>-->
-<!--            </select>-->
-
-<!--            <div th:each="i, stat : ${user.usersHolidays}" th:id="${i.name}" th:name="holidayBlock"-->
-<!--                 style="display: none">-->
-
-<!--                <div th:id="'carousel-' + ${stat.index + 1}" class="carousel slide" data-ride="carousel">-->
-<!--                    <ol class="carousel-indicators">-->
-<!--                        <li th:data-target="'#carousel-' + ${stat.index + 1}" data-slide-to="0" class="active"></li>-->
-<!--                        <li th:data-target="'#carousel-' + ${stat.index + 1}" data-slide-to="1"></li>-->
-<!--                    </ol>-->
-<!--                    <div class="carousel-inner">-->
-<!--                        <div class="carousel-item active">-->
-<!--                            <img class="d-block w-100" th:src="${i.imgs.get(0)}" alt="First slide">-->
-<!--                            <div class="carousel-caption d-none d-md-block">-->
-<!--                                <h5 class="text-white" th:text="${i.place.city}"></h5>-->
-<!--                                <p>Caption Subtitle</p>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div th:each="img : ${i.imgs}" class="carousel-item">-->
-<!--                            <img class="d-block w-100" th:src="${img}" alt="Second slide">-->
-<!--                            <div class="carousel-caption d-none d-md-block">-->
-<!--                                <h5 class="text-white" th:text="${i.place.city}"></h5>-->
-<!--                                <p></p>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <a class="carousel-control-prev" th:href="'#carousel-' + ${stat.index + 1}" role="button"-->
-<!--                       data-slide="prev">-->
-<!--                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
-<!--                        <span class="sr-only">Previous</span>-->
-<!--                    </a>-->
-<!--                    <a class="carousel-control-next" th:href="'#carousel-' + ${stat.index + 1}" role="button"-->
-<!--                       data-slide="next">-->
-<!--                        <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
-<!--                        <span class="sr-only">Next</span>-->
-<!--                    </a>-->
-<!--                </div>-->
-
-
-<!--                <label>Place: </label>-->
-<!--                <ul>-->
-<!--                    <li th:text="${i.place.country.getCountryName()}"></li>-->
-<!--                    <li th:text="${i.place.city}"></li>-->
-<!--                    <li th:text="${i.place.street}"></li>-->
-<!--                </ul>-->
-
-<!--                <label>Transport: </label>-->
-<!--                <ul>-->
-<!--                    <li th:text="${i.transport.type}"></li>-->
-<!--                </ul>-->
-
-<!--                <div th:if="${!i.place.dreamed}">-->
-<!--                    <label>Date status: </label>-->
-<!--                    <ul>-->
-<!--                        <li th:text="${i.startDate}"></li>-->
-<!--                        <li th:text="(${i.startDate.getTime()} - ${user.currentDate.getTime()}) / (24 * 60 * 60 * 1000)"></li>-->
-<!--                        <li th:text="${i.getTimePercent()}"></li>-->
-<!--                        <div th:if="${i.getTimePercent() < 70}">-->
-<!--                            <div class="progress">-->
-<!--                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"-->
-<!--                                     th:style="'width: ' + ${i.getTimePercent()} + '%'"-->
-<!--                                     th:aria-valuenow="${i.getTimePercent()}" aria-valuemin="0"-->
-<!--                                     aria-valuemax="100"></div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div th:if="${i.getTimePercent() >= 70}">-->
-<!--                            <div class="progress">-->
-<!--                                <div class="progress-bar progress-bar-striped bg-success" role="progressbar"-->
-<!--                                     th:style="'width: ' + ${i.getTimePercent()} +'%'"-->
-<!--                                     th:aria-valuenow="${i.getTimePercent()}" aria-valuemin="0"-->
-<!--                                     aria-valuemax="100"></div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-
-<!--                    </ul>-->
-<!--                </div>-->
-
-
-<!--                <div class="weather">-->
-<!--                    <h3>Weather: </h3>-->
-<!--                    <select class="custom-select" th:id="weather + ${i.name}"-->
-<!--
-                     <option th:value="currentweather + ${i.name}" th:text="'Current weather'"></opt-->
-<!--                        <option th:value="forecastweather + ${i.name}" th:text="'5 days forecast'"></option>-->
-<!--                    </select>-->
-
-<!--                    <div th:id="currentweather + ${i.name}" th:name="weatherBlock" style="display: inherit;">-->
-<!--                        <p th:text="${i.weather.currentWeather}"></p>-->
-<!--                    </div>-->
-
-<!--                    <div th:id="forecastweather + ${i.name}" th:name="weatherBlock" style="display: none">-->
-<!--                        <p th:each="timeForecast : ${i.weather.forecast}" th:text="${timeForecast}"></p>-->
-<!--                    </div>-->
-<!--                </div>-->
-
-
-<!--                <h3>Interesting places</h3>-->
-
-<!--                <div th:each="string, numb : ${i.interestingPlacesUrls}">-->
-<!--                    <a th:href="${string}" th:text="${string}"></a>-->
-<!--                    <div class="row">-->
-<!--                        <div class="col-sm-6">-->
-<!--                            <div class="card">-->
-<!--                                <img class="card-img-top" src="..." alt="Card image cap">-->
-<!--                                <div class="card-body">-->
-<!--                                    <h4 class="card-title">Sample Card Title</h4>-->
-<!--                                    <p class="card-text" th:text="${string}"></p>-->
-<!--                                    <a href="#" class="btn btn-primary">Tell me more &rarr;</a>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-
-<!--                </div>-->
-
-<!--                <div th:if="${i.place.dreamed}">-->
-<!--                    <label>Start Capital: </label>-->
-<!--                    <ul>-->
-<!--                        <li th:text="${i.startCapital}"></li>-->
-<!--                    </ul>-->
-<!--                </div>-->
-
-
-<!--            </div>-->
-
-<!--            <script>-->
-<!--                function CityChange() {-->
-<!--                    var last = document.getElementsByName('holidayBlock');-->
-<!--                    Array.prototype.forEach.call(last, function (el) {-->
-<!--                        el.style.display = "none";-->
-<!--                    });-->
-<!--                    document.getElementById(document.getElementById('example').value).style.display = "inherit";-->
-<!--                }-->
-<!--            </script>-->
-
-<!--            <script th:inline="javascript">-->
-<!--                function weatherChange(i) {-->
-<!--                    var last = document.getElementsByName('weatherBlock');-->
-<!--                    Array.prototype.forEach.call(last, function (el) {-->
-<!--                        el.style.display = "none";-->
-<!--                    });-->
-<!--                    var message = i;-->
-<!--                    document.getElementById(document.getElementById('weather' + message).value).style.display = "inherit";-->
-<!--                }-->
-<!--            </script>-->
-
-
-<!--            <div id="currentholiday" style="display: none">-->
-<!--                <h3>Choose your holiday</h3>-->
-<!--            </div>-->
-
-
-<!--            <div>-->
-<!--                <h3>baggage</h3>-->
-
-<!--            </div>-->
-<!--            <div>-->
-<!--                <h3>actual photo</h3>-->
-<!--            </div>-->
-
-
-<!--        </div>-->
-
-<!--    </div>-->
-
-
-<!--</form>-->
-
-<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"-->
-<!--        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"-->
-<!--        crossorigin="anonymous"></script>-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"-->
-<!--        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"-->
-<!--        crossorigin="anonymous"></script>-->
-<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"-->
-<!--        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"-->
-<!--        crossorigin="anonymous"></script>-->
-<!--<script type="application/json" src="/js/shards.js"></script>-->
-<!--<script type="text/javascript" th:src="@{/js/shards.js}"></script>-->
-<!--<script type="text/javascript" th:src="@{/js/myjs.js}"></script>-->
-<!--&lt;!&ndash;<script type="text/javascript" th:src="@{/js/bootstrap4.js}"></script>&ndash;&gt;-->
-
-<!--</body>-->
-<!--</html>-->
-
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-
-<!--<head>-->
-<!--    <title>Dream Holidays</title>-->
-<!--    <img th:src="@{/img/logo1.png}"/>-->
-<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
-<!--    <link th:href="@{/shards.css}" rel="stylesheet" />-->
-<!--</head>-->
-<!--<body>-->
-<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>-->
-<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>-->
-<!--<script type="application/json" src="/js/shards.js"></script>-->
-<!--<script type="text/javascript" th:src="@{/js/shards.js}"></script>-->
-
-<!--<a th:href="@{/place/new-place}">-->
-<!--    <button type="button" class="btn btn-primary btn-pill">create new place</button>-->
-<!--</a>-->
-
-
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168906270-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-168906270-1');
+    </script>
+
+
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Dream holidays</title>
@@ -246,24 +25,24 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <!--===============================================================================================-->
-    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
     <!--===============================================================================================-->
-    <link th:href="@{/fonts/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet" />
+    <link th:href="@{/fonts/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet"/>
     <!--===============================================================================================-->
-    <link th:href="@{/fonts/iconic/css/material-design-iconic-font.min.css}" rel="stylesheet" />
+    <link th:href="@{/fonts/iconic/css/material-design-iconic-font.min.css}" rel="stylesheet"/>
     <!--===============================================================================================-->
-    <link th:href="@{/vendor/animate/animate.css}" rel="stylesheet" />
+    <link th:href="@{/vendor/animate/animate.css}" rel="stylesheet"/>
     <!--===============================================================================================-->
-    <link th:href="@{/vendor/css-hamburgers/hamburgers.min.css}" rel="stylesheet" />
+    <link th:href="@{/vendor/css-hamburgers/hamburgers.min.css}" rel="stylesheet"/>
     <!--===============================================================================================-->
-    <link th:href="@{/vendor/animsition/css/animsition.min.css}" rel="stylesheet" />
+    <link th:href="@{/vendor/animsition/css/animsition.min.css}" rel="stylesheet"/>
     <!--===============================================================================================-->
-    <link th:href="@{/vendor/select2/select2.min.css}" rel="stylesheet" />
+    <link th:href="@{/vendor/select2/select2.min.css}" rel="stylesheet"/>
     <!--===============================================================================================-->
-    <link th:href="@{/vendor/daterangepicker/daterangepicker.css}" rel="stylesheet" />
+    <link th:href="@{/vendor/daterangepicker/daterangepicker.css}" rel="stylesheet"/>
     <!--===============================================================================================-->
-    <link th:href="@{css/util.css}" rel="stylesheet" />
-    <link th:href="@{css/main.css}" rel="stylesheet" />
+    <link th:href="@{css/util.css}" rel="stylesheet"/>
+    <link th:href="@{css/main.css}" rel="stylesheet"/>
     <!--===============================================================================================-->
     <link th:href="@{/shards.css}" rel="stylesheet"/>
     <link th:href="@{/shards-extras.css}" rel="stylesheet"/>
@@ -289,7 +68,7 @@
 
                         <!-- Navigation -->
                         <nav class="navbar navbar-expand-lg navbar-dark pt-4 px-0">
-                            <a class="navbar-brand" href="#">
+                            <a class="navbar-brand" th:href="@{/}">
                                 <img th:src="@{/img/agency-landing/shards-logo-white.svg}" th:class="mr-2"
                                      alt="Dream holidays">
                                 Dream holidays
@@ -303,16 +82,16 @@
                             <div class="collapse navbar-collapse" th:id="navbarNavDropdown + ${i.name}">
                                 <ul class="navbar-nav">
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                                        <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" th:href="'#our-services'+ ${i.name}">Our Services</a>
+                                        <a class="nav-link" th:href="'#our-services'+ ${i.name}">Holiday information</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" th:href="'#blog' + ${i.name}">Blog</a>
+                                        <a class="nav-link" th:href="'#interesting-places' + ${i.name}">Interesting places</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" th:href="'#testimonials' + ${i.name}">Testimonials</a>
+                                        <a class="nav-link" th:href="'#testimonials' + ${i.name}">Weather</a>
                                     </li>
                                 </ul>
 
@@ -359,47 +138,6 @@
                     <div class="features py-4 mb-4">
                         <div class="container">
                             <div class="row">
-                                <!--                                -->
-                                <!--                                <label>Place: </label>-->
-                                <!--                                <ul>-->
-                                <!--                                    <li th:text="${i.place.country.getCountryName()}"></li>-->
-                                <!--                                    <li th:text="${i.place.city}"></li>-->
-                                <!--                                    <li th:text="${i.place.street}"></li>-->
-                                <!--                                </ul>-->
-
-                                <!--                                <label>Transport: </label>-->
-                                <!--                                <ul>-->
-                                <!--                                    <li th:text="${i.transport.type}"></li>-->
-                                <!--                                </ul>-->
-
-                                <!--                                <div th:if="${!i.place.dreamed}">-->
-                                <!--                                    <label>Date status: </label>-->
-                                <!--                                    <ul>-->
-                                <!--                                        <li th:text="${i.startDate}"></li>-->
-                                <!--                                        <li th:text="(${i.startDate.getTime()} - ${user.currentDate.getTime()}) / (24 * 60 * 60 * 1000)"></li>-->
-                                <!--                                        <li th:text="${i.getTimePercent()}"></li>-->
-                                <!--                                        <div th:if="${i.getTimePercent() < 70}">-->
-                                <!--                                            <div class="progress">-->
-                                <!--                                                <div class="progress-bar progress-bar-striped progress-bar-animated"-->
-                                <!--                                                     role="progressbar"-->
-                                <!--                                                     th:style="'width: ' + ${i.getTimePercent()} + '%'"-->
-                                <!--                                                     th:aria-valuenow="${i.getTimePercent()}" aria-valuemin="0"-->
-                                <!--                                                     aria-valuemax="100"></div>-->
-                                <!--                                            </div>-->
-                                <!--                                        </div>-->
-                                <!--                                        <div th:if="${i.getTimePercent() >= 70}">-->
-                                <!--                                            <div class="progress">-->
-                                <!--                                                <div class="progress-bar progress-bar-striped bg-success"-->
-                                <!--                                                     role="progressbar"-->
-                                <!--                                                     th:style="'width: ' + ${i.getTimePercent()} +'%'"-->
-                                <!--                                                     th:aria-valuenow="${i.getTimePercent()}" aria-valuemin="0"-->
-                                <!--                                                     aria-valuemax="100"></div>-->
-                                <!--                                            </div>-->
-                                <!--                                        </div>-->
-
-                                <!--                                    </ul>-->
-                                <!--                                </div>-->
-                                <!--                                -->
                                 <div class="feature py-4 col-md-6 d-flex">
                                     <div class="icon text-primary mr-3"><i class="fa fa-globe"></i></div>
                                     <div class="px-4">
@@ -411,7 +149,7 @@
                                     <div class="icon text-primary mr-3"><i class="fa fa-home"></i></div>
                                     <div class="px-4">
                                         <h5>City</h5>
-                                        <p th:text="${i.place.city}"></p>
+                                        <p th:text="${i.place.city.cityName}"></p>
                                     </div>
                                 </div>
                             </div>
@@ -508,14 +246,14 @@
                                     <div class="carousel-item active">
                                         <img class="d-block w-100" th:src="${i.imgs.get(0)}" alt="First slide">
                                         <div class="carousel-caption d-none d-md-block">
-                                            <h5 class="text-white" th:text="${i.place.city}"></h5>
+                                            <h5 class="text-white" th:text="${i.place.city.cityName}"></h5>
                                             <p>Caption Subtitle</p>
                                         </div>
                                     </div>
                                     <div th:each="img : ${i.imgs}" class="carousel-item">
                                         <img class="d-block w-100" th:src="${img}" alt="Second slide">
                                         <div class="carousel-caption d-none d-md-block">
-                                            <h5 class="text-white" th:text="${i.place.city}"></h5>
+                                            <h5 class="text-white" th:text="${i.place.city.cityName}"></h5>
                                             <p></p>
                                         </div>
                                     </div>
@@ -541,28 +279,8 @@
                 <!-- / Our Services Section -->
 
                 <!-- Our Blog Section -->
-                <div class="blog section section-invert py-4">
+                <div class="blog section section-invert py-4" th:id="'interesting-places' + ${i.name}">
                     <h3 class="section-title text-center m-5">Interesting places</h3>
-                    <!--                    -->
-
-
-<!--                    <div th:each="string, numb : ${i.interestingPlacesUrls}">-->
-<!--                        <a th:href="${string}" th:text="${string}"></a>-->
-<!--                        <div class="row">-->
-<!--                            <div class="col-sm-6">-->
-<!--                                <div class="card">-->
-<!--                                    <img class="card-img-top" src="..." alt="Card image cap">-->
-<!--                                    <div class="card-body">-->
-<!--                                        <h4 class="card-title">Sample Card Title</h4>-->
-<!--                                        <p class="card-text" th:text="${string}"></p>-->
-<!--                                        <a th:href="${string}" class="btn btn-primary">Tell me more &rarr;</a>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-
-<!--                    </div>-->
-
                     <!--                    -->
 
                     <div class="container">
@@ -570,48 +288,48 @@
                             <div class="row">
                                 <div class="card-deck">
                                     <div th:each="string, numb : ${i.interestingPlacesUrls}" class="col-md-12 col-lg-4">
-                                        <div class="card mb-4" >
+                                        <div class="card mb-4">
                                             <img class="card-img-top" th:src="@{/img/common/card-1.jpg}"
                                                  alt="Card image cap">
                                             <div class="card-body">
                                                 <h4 class="card-title">Find Great Places to Work While Travelling</h4>
                                                 <p class="card-text" th:text="${string}"></p>
-                                                <a class="btn btn-primary btn-pill" href="#">Read More &rarr;</a>
+                                                <a class="btn btn-primary btn-pill" th:href="${string}">Read More &rarr;</a>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="col-md-12 col-lg-4">
-                                        <div class="card mb-4">
-                                            <img class="card-img-top" th:src="@{/img/common/card-3.jpg}"
-                                                 alt="Card image cap">
-                                            <div class="card-body">
-                                                <h4 class="card-title">Quick Tips for Improving Your Website's
-                                                    Design</h4>
-                                                <p class="card-text">He seems sinking under the evidence could not only
-                                                    grieve
-                                                    and a
-                                                    visit. The father is to bless and placed in his length hid...</p>
-                                                <a class="btn btn-primary btn-pill" href="#">Read More &rarr;</a>
-                                            </div>
-                                        </div>
-                                    </div>
+<!--                                    <div class="col-md-12 col-lg-4">-->
+<!--                                        <div class="card mb-4">-->
+<!--                                            <img class="card-img-top" th:src="@{/img/common/card-3.jpg}"-->
+<!--                                                 alt="Card image cap">-->
+<!--                                            <div class="card-body">-->
+<!--                                                <h4 class="card-title">Quick Tips for Improving Your Website's-->
+<!--                                                    Design</h4>-->
+<!--                                                <p class="card-text">He seems sinking under the evidence could not only-->
+<!--                                                    grieve-->
+<!--                                                    and a-->
+<!--                                                    visit. The father is to bless and placed in his length hid...</p>-->
+<!--                                                <a class="btn btn-primary btn-pill" href="#">Read More &rarr;</a>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
 
-                                    <div class="col-md-12 col-lg-4">
-                                        <div class="card mb-4">
-                                            <img class="card-img-top" th:src="@{/img/common/card-2.jpg}"
-                                                 alt="Card image cap">
-                                            <div class="card-body">
-                                                <h4 class="card-title">A Designer's Tips While Travelling and
-                                                    Working</h4>
-                                                <p class="card-text">He seems sinking under the evidence could not only
-                                                    grieve
-                                                    and a
-                                                    visit. The father is to bless and placed in his length hid...</p>
-                                                <a class="btn btn-primary btn-pill" href="#">Read More &rarr;</a>
-                                            </div>
-                                        </div>
-                                    </div>
+<!--                                    <div class="col-md-12 col-lg-4">-->
+<!--                                        <div class="card mb-4">-->
+<!--                                            <img class="card-img-top" th:src="@{/img/common/card-2.jpg}"-->
+<!--                                                 alt="Card image cap">-->
+<!--                                            <div class="card-body">-->
+<!--                                                <h4 class="card-title">A Designer's Tips While Travelling and-->
+<!--                                                    Working</h4>-->
+<!--                                                <p class="card-text">He seems sinking under the evidence could not only-->
+<!--                                                    grieve-->
+<!--                                                    and a-->
+<!--                                                    visit. The father is to bless and placed in his length hid...</p>-->
+<!--                                                <a class="btn btn-primary btn-pill" href="#">Read More &rarr;</a>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
                                 </div>
                             </div>
                         </div>
@@ -637,57 +355,27 @@
                                     <p th:text="'Current temp: ' + ${i.weather.currentWeather}"></p>
                                 </div>
 
-                                <div th:id="forecastweather + ${i.name}" th:name="weatherBlock" style="display: none" class="table100-nextcols">
+                                <div th:id="forecastweather + ${i.name}" th:name="weatherBlock" style="display: none"
+                                     class="table100-nextcols">
                                     <table class="minimalistBlack">
                                         <tbody>
                                         <tr th:each="timeForecast : ${i.weather.forecast}" class="row100 body">
                                             <td th:text="${timeForecast.getDate()}" class="cell100 column1">date</td>
-                                            <td th:text="${timeForecast.getCloudData().cloud}" class="cell100 column2">clouds</td>
+                                            <td th:text="${timeForecast.getCloudData().cloud}" class="cell100 column2">
+                                                clouds
+                                            </td>
                                             <td th:text="${timeForecast.getTemp()}" class="cell100 column3">temp</td>
-                                            <td th:text="${timeForecast.getMinTemp()}" class="cell100 column4">minTemp</td>
-                                            <td th:text="${timeForecast.getMaxTemp()}" class="cell100 column5">maxTemp</td>
+                                            <td th:text="${timeForecast.getMinTemp()}" class="cell100 column4">minTemp
+                                            </td>
+                                            <td th:text="${timeForecast.getMaxTemp()}" class="cell100 column5">maxTemp
+                                            </td>
                                         </tr>
                                         </tbody>
                                     </table>
                                     <!-- Table-->
-<!--                                    <p th:each="timeForecast : ${i.weather.forecast}" th:text="${timeForecast}"></p>-->
+                                    <!--                                    <p th:each="timeForecast : ${i.weather.forecast}" th:text="${timeForecast}"></p>-->
                                 </div>
                             </div>
-                            <!--                            -->
-<!--                            <div class="col-md-4 testimonial text-center">-->
-<!--                                <div class="avatar rounded-circle with-shadows mb-3 ml-auto mr-auto">-->
-<!--                                    <img th:src="@{/img/common/avatar-1.jpeg}" class="w-100" alt="Testimonial Avatar"/>-->
-<!--                                </div>-->
-<!--                                <h5 class="mb-1">Osbourne Tranter</h5>-->
-<!--                                <span class="text-muted d-block mb-2">CEO at Megacorp</span>-->
-<!--                                <p>Vivamus quis ex mattis, gravida erat a, iaculis urna. Proin ac eleifend tortor. Nunc-->
-<!--                                    in-->
-<!--                                    augue-->
-<!--                                    eget-->
-<!--                                    enim venenatis viverra.</p>-->
-<!--                            </div>-->
-
-<!--                            <div class="col-md-4 testimonial text-center">-->
-<!--                                <div class="avatar rounded-circle with-shadows mb-3 ml-auto mr-auto">-->
-<!--                                    <img th:src="@{/img/common/avatar-2.jpeg}" class="w-100" alt="Testimonial Avatar"/>-->
-<!--                                </div>-->
-<!--                                <h5 class="mb-1">Darrin Ollie</h5>-->
-<!--                                <span class="text-muted d-block mb-2">CEO at Megacorp</span>-->
-<!--                                <p>Nullam eu ligula facilisis, commodo velit non, vulputate dolor. Aenean congue euismod-->
-<!--                                    vestibulum.</p>-->
-<!--                            </div>-->
-
-<!--                            <div class="col-md-4 testimonial text-center">-->
-<!--                                <div class="avatar rounded-circle with-shadows mb-3 ml-auto mr-auto">-->
-<!--                                    <img th:src="@{/img/common/avatar-3.jpeg}" class="w-100" alt="Testimonial Avatar"/>-->
-<!--                                </div>-->
-<!--                                <h5 class="mb-1">Quinton Bruce</h5>-->
-<!--                                <span class="text-muted d-block mb-2">CEO at Megacorp</span>-->
-<!--                                <p> Aenean imperdiet ultrices tortor id convallis. Donec id metus magna. Morbi pretium-->
-<!--                                    odio-->
-<!--                                    faucibus-->
-<!--                                    blandit gravida.</p>-->
-<!--                            </div>-->
                         </div>
                     </div>
                 </div>
@@ -697,7 +385,7 @@
                 <footer>
                     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                         <div class="container">
-                            <a class="navbar-brand" href="#">Dream holidays</a>
+                            <a class="navbar-brand" th:href="@{/}">Dream holidays</a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
@@ -705,16 +393,16 @@
                             <div class="collapse navbar-collapse" th:id="navbarNav + ${i.name}">
                                 <ul class="navbar-nav ml-auto">
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                                        <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" th:href="'#our-services'+ ${i.name}">Our Services</a>
+                                        <a class="nav-link" th:href="'#our-services'+ ${i.name}">Holiday information</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" th:href="'#blog' + ${i.name}">Blog</a>
+                                        <a class="nav-link" th:href="'#interesting-places' + ${i.name}">Interesting places</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" th:href="'#testimonials' + ${i.name}">Testimonials</a>
+                                        <a class="nav-link" th:href="'#testimonials' + ${i.name}">Weather</a>
                                     </li>
                                 </ul>
                             </div>

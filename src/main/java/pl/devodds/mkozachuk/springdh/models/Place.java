@@ -20,8 +20,8 @@ public class Place {
     @JoinColumn(name = "user_id")
     private User user; //created by
 
-    @Column(name = "city")
-    private String city;
+    @ManyToOne(targetEntity = City.class)
+    private City city;
 
     @Column(name = "street")
     private String street;

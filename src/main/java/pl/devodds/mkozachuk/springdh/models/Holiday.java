@@ -31,8 +31,6 @@ public class Holiday {
 
 //    @NotBlank(message = "Name is required")
     @NotNull
-    @Size(min = 5, message = "Name must be at least 5 characters long")
-    @Column(name = "name")
     private String name;
 
     @ManyToOne
@@ -60,7 +58,6 @@ public class Holiday {
     //dreamed only
 
     @Column(name = "price")
-    @Positive
     private BigDecimal price;
 
     private BigDecimal startCapital;
