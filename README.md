@@ -8,9 +8,9 @@ The user can register his own account, add vacation details, track the time / fi
 
 [You can check runnig application here](https://dream-holidays.herokuapp.com/)
 >Test drive credentials
-[User's holidays page](https://dream-holidays.herokuapp.com/holidays/my-holidays)
->Login: User
->Password: user
+>>[User's holidays page](https://dream-holidays.herokuapp.com/holidays/my-holidays)
+>>Login: User
+>>Password: user
 
 **Technologies:** 
 <li> SpringBoot 
