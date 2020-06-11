@@ -3,3 +3,4 @@ CREATE TABLE IF NOT EXISTS country(
     country_code VARCHAR(2),
     country_name VARCHAR(100)
 );
+
