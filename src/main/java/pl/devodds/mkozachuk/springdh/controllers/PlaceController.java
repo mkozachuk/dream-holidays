@@ -30,8 +30,7 @@ public class PlaceController {
     private PlaceRepository placeRepository;
     private UserRepository userRepository;
 
-
-    public PlaceController(CountryController countryController, CityController cityController, PlaceRepository placeRepository, UserRepository userRepository){
+    public PlaceController(CountryController countryController, CityController cityController, PlaceRepository placeRepository, UserRepository userRepository) {
         this.countryController = countryController;
         this.cityController = cityController;
         this.placeRepository = placeRepository;
@@ -62,12 +61,9 @@ public class PlaceController {
 
         return "design";
     }
-//
+
     @PostMapping("/new-place")
     public String processDesign(@ModelAttribute("design") Place design, Errors errors, @ModelAttribute Holiday holiday, @AuthenticationPrincipal User user) {
-//        if (errors.hasErrors()) {
-//            return "design";
-//        }
 
         design.setUser(user);
         Place saved = placeRepository.save(design);
@@ -75,14 +71,12 @@ public class PlaceController {
         holiday.addDesign(saved);
 
 
-
-        if(design.isDreamed()){
+        if (design.isDreamed()) {
             return "redirect:/holidays/dreamed";
-        }else {
+        } else {
             return "redirect:/holidays/planed";
         }
     }
-
 
 
 }

@@ -10,11 +10,11 @@ import java.util.List;
 public class CityController {
     private final CityRepository cityRepository;
 
-    public CityController(CityRepository cityRepository){
+    public CityController(CityRepository cityRepository) {
         this.cityRepository = cityRepository;
     }
 
-    public List<City> getAll(){
+    public List<City> getAll() {
         return (List<City>) cityRepository.findAll();
     }
 }

@@ -8,12 +8,13 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@NoArgsConstructor(access= AccessLevel.PRIVATE, force=true)
+@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 @Table(name = "transport")
 public class Transport {
     public Transport(String type) {
         this.type = TransportType.valueOf(type);
     }
+
     public Transport(TransportType type) {
         this.type = type;
     }

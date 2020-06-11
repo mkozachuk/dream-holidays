@@ -35,7 +35,7 @@ public class RegistrationController {
     @PostMapping
     public String processRegistration(@Valid RegistrationForm form, Errors errors) {
 
-        if(errors.hasErrors()){
+        if (errors.hasErrors()) {
             return "form";
         }
 

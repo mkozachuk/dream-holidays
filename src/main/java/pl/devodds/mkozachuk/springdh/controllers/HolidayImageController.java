@@ -16,20 +16,19 @@ public class HolidayImageController {
 
     Conf conf;
 
-    public HolidayImageController(Conf conf){
+    public HolidayImageController(Conf conf) {
         this.conf = conf;
     }
 
     private static final int HTTP_REQUEST_TIMEOUT = 3 * 600000;
-    public List<Result> search(String keyword){
-        Customsearch customsearch= null;
 
+    public List<Result> search(String keyword) {
+        Customsearch customsearch = null;
 
         try {
-            customsearch = new Customsearch(new NetHttpTransport(),new JacksonFactory(), new HttpRequestInitializer() {
+            customsearch = new Customsearch(new NetHttpTransport(), new JacksonFactory(), new HttpRequestInitializer() {
                 public void initialize(HttpRequest httpRequest) {
                     try {
-                        // set connect and read timeouts
                         httpRequest.setConnectTimeout(HTTP_REQUEST_TIMEOUT);
                         httpRequest.setReadTimeout(HTTP_REQUEST_TIMEOUT);
 
@@ -42,21 +41,19 @@ public class HolidayImageController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        List<Result> resultList=null;
+        List<Result> resultList = null;
         try {
             Customsearch.Cse.List list = customsearch.cse().list();
             list.setKey(conf.getGoogleKey());
             list.setCx(conf.getCx());
             list.setQ(keyword);
-            Search results=list.execute();
-            resultList=results.getItems();
-        }
-        catch (  Exception e) {
+            Search results = list.execute();
+            resultList = results.getItems();
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return resultList;
     }
-
 
 
 }

@@ -1,31 +1,16 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-
-<!--<head>-->
-<!--    <title>Dream Holidays</title>-->
-<!--    <img th:src="@{/img/logo1.png}"/>-->
-<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
-<!--    <link th:href="@{/shards.css}" rel="stylesheet" />-->
-<!--</head>-->
-<!--<body>-->
-<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>-->
-<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>-->
-<!--<script type="application/json" src="/js/shards.js"></script>-->
-<!--<script type="text/javascript" th:src="@{/js/shards.js}"></script>-->
-
-<!--<a th:href="@{/place/new-place}">-->
-<!--    <button type="button" class="btn btn-primary btn-pill">create new place</button>-->
-<!--</a>-->
-
-
 <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168906270-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
 
         gtag('config', 'UA-168906270-1');
@@ -72,9 +57,6 @@
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/holidays/my-holidays}">My Holidays</a>
                     </li>
-<!--                    <li class="nav-item">-->
-<!--                        <a class="nav-link" href="#testimonials">Testimonials</a>-->
-<!--                    </li>-->
                 </ul>
 
                 <ul class="navbar-nav ml-auto">
@@ -147,7 +129,7 @@
                     <div class="icon text-primary mr-3"><i class="fa fa-puzzle-piece"></i></div>
                     <div class="px-4">
                         <h5>Weather & photos</h5>
-                            <p>Weather & photo inspiration</p>
+                        <p>Weather & photo inspiration</p>
                     </div>
                 </div>
             </div>
@@ -156,160 +138,6 @@
     <!-- / Features -->
 </div>
 <!-- / Our Services Section -->
-
-<!--&lt;!&ndash; Our Blog Section &ndash;&gt;-->
-<!--<div class="blog section section-invert py-4">-->
-<!--    <h3 class="section-title text-center m-5">Latest Posts</h3>-->
-
-<!--    <div class="container">-->
-<!--        <div class="py-4">-->
-<!--            <div class="row">-->
-<!--                <div class="card-deck">-->
-<!--                    <div class="col-md-12 col-lg-4">-->
-<!--                        <div class="card mb-4">-->
-<!--                            <img class="card-img-top" th:src="@{/img/common/card-1.jpg}" alt="Card image cap">-->
-<!--                            <div class="card-body">-->
-<!--                                <h4 class="card-title">Find Great Places to Work While Travelling</h4>-->
-<!--                                <p class="card-text">He seems sinking under the evidence could not only grieve and a visit. The father is to bless and placed in his length hid...</p>-->
-<!--                                <a class="btn btn-primary btn-pill" href="#">Read More &rarr;</a>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-
-<!--                    <div class="col-md-12 col-lg-4">-->
-<!--                        <div class="card mb-4">-->
-<!--                            <img class="card-img-top" th:src="@{/img/common/card-3.jpg}" alt="Card image cap">-->
-<!--                            <div class="card-body">-->
-<!--                                <h4 class="card-title">Quick Tips for Improving Your Website's Design</h4>-->
-<!--                                <p class="card-text">He seems sinking under the evidence could not only grieve and a visit. The father is to bless and placed in his length hid...</p>-->
-<!--                                <a class="btn btn-primary btn-pill" href="#">Read More &rarr;</a>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-
-<!--                    <div class="col-md-12 col-lg-4">-->
-<!--                        <div class="card mb-4">-->
-<!--                            <img class="card-img-top" th:src="@{/img/common/card-2.jpg}" alt="Card image cap">-->
-<!--                            <div class="card-body">-->
-<!--                                <h4 class="card-title">A Designer's Tips While Travelling and Working</h4>-->
-<!--                                <p class="card-text">He seems sinking under the evidence could not only grieve and a visit. The father is to bless and placed in his length hid...</p>-->
-<!--                                <a class="btn btn-primary btn-pill" href="#">Read More &rarr;</a>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--&lt;!&ndash; / Our Blog Section &ndash;&gt;-->
-
-<!--&lt;!&ndash; Testimonials Section &ndash;&gt;-->
-<!--<div id="testimonials" class="testimonials section py-4">-->
-<!--    <h3 class="section-title text-center m-5">Testimonials</h3>-->
-<!--    <div class="container py-5">-->
-<!--        <div class="row">-->
-<!--            <div class="col-md-4 testimonial text-center">-->
-<!--                <div class="avatar rounded-circle with-shadows mb-3 ml-auto mr-auto">-->
-<!--                    <img th:src="@{/img/common/avatar-1.jpeg}" class="w-100" alt="Testimonial Avatar" />-->
-<!--                </div>-->
-<!--                <h5 class="mb-1">Osbourne Tranter</h5>-->
-<!--                <span class="text-muted d-block mb-2">CEO at Megacorp</span>-->
-<!--                <p>Vivamus quis ex mattis, gravida erat a, iaculis urna. Proin ac eleifend tortor. Nunc in augue eget enim venenatis viverra.</p>-->
-<!--            </div>-->
-
-<!--            <div class="col-md-4 testimonial text-center">-->
-<!--                <div class="avatar rounded-circle with-shadows mb-3 ml-auto mr-auto">-->
-<!--                    <img th:src="@{/img/common/avatar-2.jpeg}" class="w-100" alt="Testimonial Avatar" />-->
-<!--                </div>-->
-<!--                <h5 class="mb-1">Darrin Ollie</h5>-->
-<!--                <span class="text-muted d-block mb-2">CEO at Megacorp</span>-->
-<!--                <p>Nullam eu ligula facilisis, commodo velit non, vulputate dolor. Aenean congue euismod vestibulum.</p>-->
-<!--            </div>-->
-
-<!--            <div class="col-md-4 testimonial text-center">-->
-<!--                <div class="avatar rounded-circle with-shadows mb-3 ml-auto mr-auto">-->
-<!--                    <img th:src="@{/img/common/avatar-3.jpeg}" class="w-100" alt="Testimonial Avatar" />-->
-<!--                </div>-->
-<!--                <h5 class="mb-1">Quinton Bruce</h5>-->
-<!--                <span class="text-muted d-block mb-2">CEO at Megacorp</span>-->
-<!--                <p> Aenean imperdiet ultrices tortor id convallis. Donec id metus magna. Morbi pretium odio faucibus blandit gravida.</p>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--&lt;!&ndash; / Testimonials Section &ndash;&gt;-->
-
-<!--&lt;!&ndash; Contact Section &ndash;&gt;-->
-<!--<div class="contact section-invert py-4">-->
-<!--    <h3 class="section-title text-center m-5">Contact Us</h3>-->
-<!--    <div class="container py-4">-->
-<!--        <div class="row justify-content-md-center px-4">-->
-<!--            <div class="contact-form col-sm-12 col-md-10 col-lg-7 p-4 mb-4 card">-->
-<!--                <form>-->
-<!--                    <div class="row">-->
-<!--                        <div class="col-md-6 col-sm-12">-->
-<!--                            <div class="form-group">-->
-<!--                                <label for="contactFormFullName">Full Name</label>-->
-<!--                                <input type="email" class="form-control" id="contactFormFullName" placeholder="Enter your full name">-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="col-md-6 col-sm-12">-->
-<!--                            <div class="form-group">-->
-<!--                                <label for="contactFormEmail">Email address</label>-->
-<!--                                <input type="email" class="form-control" id="contactFormEmail" placeholder="Enter your email address">-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="row">-->
-<!--                        <div class="col">-->
-<!--                            <div class="form-group">-->
-<!--                                <label for="exampleInputMessage1">Message</label>-->
-<!--                                <textarea id="exampleInputMessage1" class="form-control mb-4" rows="10" placeholder="Enter your message..." name="message"></textarea>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <input class="btn btn-primary btn-pill d-flex ml-auto mr-auto" type="submit" value="Send Your Message">-->
-<!--                </form>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--&lt;!&ndash; / Contact Section &ndash;&gt;-->
-
-<!-- Footer Section -->
-<!--<footer>-->
-<!--    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">-->
-<!--        <div class="container">-->
-<!--            <a class="navbar-brand" href="#">Dream holidays</a>-->
-<!--            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--                <span class="navbar-toggler-icon"></span>-->
-<!--            </button>-->
-<!--            <div class="collapse navbar-collapse" id="navbarNav">-->
-<!--                <ul class="navbar-nav ml-auto">-->
-<!--                    <li class="nav-item active">-->
-<!--                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
-<!--                    </li>-->
-<!--                    <li class="nav-item">-->
-<!--                        <a class="nav-link" href="#">Our Services</a>-->
-<!--                    </li>-->
-<!--                    <li class="nav-item">-->
-<!--                        <a class="nav-link" href="#">Blog</a>-->
-<!--                    </li>-->
-<!--                    <li class="nav-item">-->
-<!--                        <a class="nav-link" href="#">Testimonials</a>-->
-<!--                    </li>-->
-<!--                    <li class="nav-item">-->
-<!--                        <a class="nav-link" href="#">Contact Us</a>-->
-<!--                    </li>-->
-<!--                </ul>-->
-<!--            </div>-->
-
-<!--        </div>-->
-<!--    </nav>-->
-<!--</footer>-->
-<!-- / Footer Section -->
-
 <!-- JavaScript Dependencies -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>

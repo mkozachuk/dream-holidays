@@ -11,11 +11,11 @@ import pl.devodds.mkozachuk.springdh.repositories.TransportRepository;
 public class TransportController {
     private final TransportRepository transportRepository;
 
-    public TransportController(TransportRepository transportRepository){
+    public TransportController(TransportRepository transportRepository) {
         this.transportRepository = transportRepository;
     }
 
-    public Transport getByType(TransportType type){
+    public Transport getByType(TransportType type) {
         return transportRepository.getByType(type);
     }
 }

@@ -1,7 +1,8 @@
-#carousel slide{
+#carousel slide {
     max-width: 60%;
     margin: 0 auto;
 }
+
 .carousel-item img {
     height: 450px;
 }

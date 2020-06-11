@@ -29,7 +29,6 @@ public class Holiday {
     @Column(name = "id")
     private Long holiday_id;
 
-//    @NotBlank(message = "Name is required")
     @NotNull
     private String name;
 
@@ -37,7 +36,6 @@ public class Holiday {
     @JoinColumn
     private User user;
 
-//    @NotBlank(message = "Date is required")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "start_date")
     private Date startDate;
@@ -46,7 +44,6 @@ public class Holiday {
     @Column(name = "created_date")
     private Date createdAt;
 
-//    @NotBlank(message = "Place is required")
     @ManyToOne()
     @JoinColumn(name = "place_id")
     private Place place;
@@ -82,15 +79,9 @@ public class Holiday {
     private int capitalPercent;
 
 
-
     @ManyToOne()
     @JoinColumn()
     private Transport transport;
-
-
-
-//    @Transient
-//    List<Things> baggage = new ArrayList<>();
 
     public void addDesign(Place place) {
         this.place = place;

@@ -21,7 +21,7 @@ $('#carousel-3').carousel({
     keyboard: true
 });
 
-/* 4 carousel example with jumbotron */
+/* 4 carousel example */
 $('#carousel-4').carousel({
     interval: 5000,
     wrap: true,

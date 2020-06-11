@@ -60,7 +60,6 @@ public class HolidayController {
 
         log.info("Holiday submitted: " + holiday);
         holiday.setUser(user);
-//        holiday.setTransport(transportController.getByType(new Transport(holiday.getTransportId()).getType()));
         holiday.setCreatedAt(new Date());
         holidayRepository.save(holiday);
         sessionStatus.setComplete();
@@ -77,9 +76,6 @@ public class HolidayController {
 
     @PostMapping("/planed")
     public String processPlanedHoliday(@Valid Holiday holiday, Errors errors, SessionStatus sessionStatus, @AuthenticationPrincipal User user, Model model) {
-//        if (errors.hasErrors()) {
-//            return "planedForm";
-//        }
         model.addAttribute(holiday);
 
         log.info("Holiday submitted: " + holiday);
@@ -98,7 +94,6 @@ public class HolidayController {
         holidayRepository.save(holiday);
         sessionStatus.setComplete();
 
-
         return "redirect:/holidays/my-holidays";
     }
 
@@ -108,7 +103,6 @@ public class HolidayController {
         user.setUsersHolidays(getUsersHolidays(user));
 
         if (user.getUsersHolidays().size() != 0) {
-
 
             user.setCurrentDate(new Date());
 
@@ -153,9 +147,7 @@ public class HolidayController {
                 }
             }
 
-
             model.addAttribute(user);
-
 
             return "holidays";
         } else {
